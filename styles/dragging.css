@@ -1,0 +1,16 @@
+.dragging {
+  opacity: 0.6;
+  cursor: grabbing;
+}
+/* .dragging * {
+  pointer-events: none;
+} */
+.drag-over {
+  outline: 2px dashed rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.group,
+.link-row {
+  cursor: grab;
+}

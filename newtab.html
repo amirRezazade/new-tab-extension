@@ -7,7 +7,19 @@
   </head>
   <body>
     <div class="search-bar">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img" viewBox="0 0 512 512" width="24" height="24" fill="#000000">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <rect width="512" height="512" rx="15%" fill="transparent"></rect>
+            <path fill="#4285f4" d="M386 400c45-42 65-112 53-179H260v74h102c-4 24-18 44-38 57z"></path>
+            <path fill="#34a853" d="M90 341a192 192 0 0 0 296 59l-62-48c-53 35-141 22-171-60z"></path>
+            <path fill="#fbbc02" d="M153 292c-8-25-8-48 0-73l-63-49c-23 46-30 111 0 171z"></path>
+            <path fill="#ea4335" d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z"></path>
+          </g>
+        </svg>
+      </span>
       <input type="text" placeholder="Search..." id="searchInput" />
     </div>
     <div class="bookmarks-wrapper">
@@ -66,6 +78,39 @@
         <path d="M21 15l-5-5L5 21"></path>
       </svg>
     </button>
+    <div class="wallpaper-panel" id="wallpaperPanel">
+      <!-- تب‌های بالای پنل -->
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-panel="wallpaper">Wallpaper</button>
+        <button class="panel-tab" data-panel="theme">Theme</button>
+      </div>
+
+      <!-- محتوای Wallpaper (مثل قبل) -->
+      <div class="panel-content" id="panelWallpaper">
+        <div class="wallpaper-grid" id="wallpaperGrid"></div>
+        <button class="upload-wallpaper-btn" id="uploadWallpaperBtn">Upload Wallpaper</button>
+        <input type="file" id="wallpaperFileInput" accept="image/*" style="display: none" />
+      </div>
+
+      <!-- محتوای Theme -->
+      <div class="panel-content" id="panelTheme" style="display: none">
+        <!-- رنگ‌های آماده -->
+        <p class="panel-label">Accent Color</p>
+        <div class="color-presets" id="colorPresets"></div>
+
+        <!-- color picker سفارشی -->
+        <p class="panel-label">Custom Color</p>
+        <input type="color" id="accentColorPicker" value="#3b82f6" />
+
+        <!-- میزان بلور گروه‌ها -->
+        <p class="panel-label">Card Blur <span id="blurValue">12</span>px</p>
+        <input type="range" id="blurRange" min="0" max="30" value="12" step="1" />
+
+        <!-- شفافیت کارت‌ها -->
+        <p class="panel-label">Card Opacity <span id="opacityValue">12</span>%</p>
+        <input type="range" id="opacityRange" min="0" max="40" value="12" step="1" />
+      </div>
+    </div>
 
     <div class="wallpaper-panel" id="wallpaperPanel">
       <h4>Wallpapers</h4>

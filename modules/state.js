@@ -1,5 +1,7 @@
 let state = {
   activeTab: "home",
+  wallpaper: null,
+  tabOrder: ["home"],
   tabs: {
     home: {
       name: "Home",
@@ -28,10 +30,19 @@ function saveState() {
 function loadState(callback) {
   chrome.storage.local.get(["appState"], (result) => {
     if (result.appState) {
-      state = result.appState;
+      Object.assign(state, result.appState);
     }
-    callback(); // بعد از لود شدن، رندر کن
+
+    // اگه tabOrder نداشت (state قدیمی)، از tabs بسازش
+    if (!state.tabOrder) {
+      state.tabOrder = Object.keys(state.tabs);
+    }
+
+    if (state.wallpaper) {
+      document.body.style.backgroundImage = `url('${state.wallpaper}')`;
+    }
+
+    callback();
   });
 }
-
 export { state, saveState, loadState };

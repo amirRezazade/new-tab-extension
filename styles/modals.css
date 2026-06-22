@@ -71,7 +71,7 @@
 }
 
 .modal-actions button[type="submit"] {
-  background: #3b82f6;
+  background: var(--accent);
   color: white;
 }
 #confirmModalMessage {

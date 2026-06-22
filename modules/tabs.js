@@ -2,13 +2,59 @@ import { renderGroups } from "./groups.js";
 import { openConfirmModal } from "./modals.js";
 import { state, saveState } from "./state.js";
 
+const tabsContainer = document.getElementById("tabsContainer");
+
+tabsContainer.addEventListener("dragover", (e) => {
+  e.preventDefault();
+
+  const draggingEl = tabsContainer.querySelector(".tab-wrapper.dragging");
+  if (!draggingEl) return;
+
+  const siblings = [...tabsContainer.querySelectorAll(".tab-wrapper:not(.dragging)")];
+
+  const after = siblings.find((sibling) => {
+    const rect = sibling.getBoundingClientRect();
+    return e.clientX < rect.left + rect.width / 2;
+  });
+
+  if (after) {
+    tabsContainer.insertBefore(draggingEl, after);
+  } else {
+    tabsContainer.appendChild(draggingEl);
+  }
+});
+
+tabsContainer.addEventListener("drop", (e) => {
+  e.preventDefault();
+
+  const draggingEl = tabsContainer.querySelector(".tab-wrapper.dragging");
+  if (!draggingEl) return;
+
+  // ترتیب جدید رو از DOM بخون
+  const newOrder = [...tabsContainer.querySelectorAll(".tab-wrapper")].map((el) => el.dataset.tabId);
+
+  state.tabOrder = newOrder;
+  saveState();
+  renderTabs();
+});
+
 function renderTabs() {
   const container = document.getElementById("tabsContainer");
   container.innerHTML = "";
 
-  Object.keys(state.tabs).forEach((tabId) => {
+  state.tabOrder.forEach((tabId) => {
     const tabWrapper = document.createElement("button");
     tabWrapper.className = "tab-wrapper" + (tabId === state.activeTab ? " active" : "");
+    tabWrapper.dataset.tabId = tabId; // ← اضافه شد
+    tabWrapper.draggable = true;
+    tabWrapper.addEventListener("dragstart", (e) => {
+      tabWrapper.classList.add("dragging");
+      e.stopPropagation();
+    });
+
+    tabWrapper.addEventListener("dragend", () => {
+      tabWrapper.classList.remove("dragging");
+    });
     tabWrapper.addEventListener("click", () => {
       state.activeTab = tabId;
       renderTabs();
@@ -48,7 +94,7 @@ function renameTab(tabId) {
 }
 
 function deleteTab(tabId) {
-  const tabIds = Object.keys(state.tabs);
+  const tabIds = state.tabOrder;
   if (tabIds.length === 1) {
     alert("باید حداقل یه تب باقی بمونه!");
     return;
@@ -62,8 +108,9 @@ function deleteTab(tabId) {
     confirmText: "Delete",
     onConfirm: () => {
       delete state.tabs[tabId];
+      state.tabOrder = state.tabOrder.filter((id) => id !== tabId);
       if (state.activeTab === tabId) {
-        state.activeTab = Object.keys(state.tabs)[0];
+        state.activeTab = state.tabOrder[0];
       }
       renderTabs();
       renderGroups();

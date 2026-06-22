@@ -1,3 +1,5 @@
+import { setupLinkDrag } from "./drag-links.js";
+import { makeDraggable } from "./drag.js";
 import { openConfirmModal, openModal } from "./modals.js";
 import { state, saveState } from "./state.js";
 
@@ -10,7 +12,19 @@ function renderGroups() {
   currentTab.groups.forEach((group, groupIndex) => {
     const groupEl = document.createElement("div");
     groupEl.className = "group";
-
+    makeDraggable({
+      element: groupEl,
+      index: groupIndex,
+      type: "group",
+      onDrop: (fromIndex, toIndex) => {
+        const currentTab = state.tabs[state.activeTab];
+        const groups = currentTab.groups;
+        const [moved] = groups.splice(fromIndex, 1);
+        groups.splice(toIndex, 0, moved);
+        renderGroups();
+        saveState();
+      },
+    });
     // --- ردیف عنوان گروه + دکمه گزینه گروه ---
     const titleRow = document.createElement("div");
     titleRow.className = "group-title-row";
@@ -32,7 +46,6 @@ function renderGroups() {
     titleRow.appendChild(title);
     titleRow.appendChild(groupOptionsBtn);
     groupEl.appendChild(titleRow);
-
     // --- لینک‌های این گروه ---
     group.links.forEach((link, linkIndex) => {
       const linkRow = document.createElement("div");
@@ -41,11 +54,11 @@ function renderGroups() {
       const a = document.createElement("a");
       a.href = link.url;
       a.className = "link-item";
-
+      a.draggable = false;
       const img = document.createElement("img");
       const domain = new URL(link.url).hostname;
       img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
-
+      img.draggable = false;
       a.appendChild(img);
       a.appendChild(document.createTextNode(link.name));
 
@@ -74,6 +87,7 @@ function renderGroups() {
     groupEl.appendChild(addLinkBtn);
 
     container.appendChild(groupEl);
+    setupLinkDrag(groupEl, groupIndex);
   });
 
   // --- دکمه افزودن گروه جدید ---

@@ -2,7 +2,13 @@
 @import url(./styles/searchbar.css);
 @import url(./styles/tabs.css);
 @import url(./styles/modals.css);
+@import url(./styles/dragging.css);
 
+:root {
+  --accent: #3b82f6;
+  --card-blur: 12px;
+  --card-opacity: 0.12;
+}
 * {
   margin: 0;
   padding: 0;

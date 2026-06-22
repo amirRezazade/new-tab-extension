@@ -104,6 +104,7 @@ modalForm.addEventListener("submit", (e) => {
 
     const id = tabName.toLowerCase().replace(/\s+/g, "-") + "-" + Date.now();
     state.tabs[id] = { name: tabName, groups: [] };
+    state.tabOrder.push(id);
     state.activeTab = id;
 
     renderTabs();
