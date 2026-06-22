@@ -1,0 +1,19 @@
+@import url(./styles/wallpaper.css);
+@import url(./styles/searchbar.css);
+@import url(./styles/tabs.css);
+@import url(./styles/modals.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: url("bg.jpg") center/cover no-repeat;
+  font-family: -apple-system, "Segoe UI", Tahoma, sans-serif;
+  overflow: hidden;
+  transition: background-image 0.3s ease;
+}

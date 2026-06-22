@@ -1,0 +1,262 @@
+.bookmarks-wrapper {
+  padding-top: 120px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.link-groups {
+  display: flex;
+  gap: 16px;
+}
+
+.group {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 16px;
+  width: 200px;
+  height: fit-content;
+  color: white;
+}
+
+.group h3 {
+  font-size: 14px;
+  font-weight: 600;
+
+  opacity: 0.95;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 0;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.link-item:hover {
+  opacity: 1;
+}
+
+.link-item img {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+.tab-wrapper {
+  min-width: 80px;
+  position: relative;
+  display: flex;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  user-select: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-weight: 500;
+}
+
+.tab-options-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 22px;
+  opacity: 0;
+  background: 0 0;
+  border: none;
+  border-left: 1px solid transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.1s, background 0.1s, border-color 0.1s;
+}
+
+.tab-wrapper:hover .tab-options-btn {
+  opacity: 1;
+  border-color: gray;
+}
+.tab-wrapper:hover .tab {
+  transform: translateX(-9px);
+}
+
+.tab-wrapper.active {
+  background: #3b82f6;
+}
+.tab-wrapper.active:hover .tab-options-btn {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.256);
+}
+.tab {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+  transition: transform 0.15s ease;
+}
+
+.tab-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 120px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-menu button {
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tab-menu button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab-menu button.danger {
+  color: #f87171;
+}
+
+.tab-bar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab-arrow {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.add-tab-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.add-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.tab-divider {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.add-link-btn {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px;
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.add-link-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.add-group-btn {
+  align-self: flex-start;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.add-group-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.group-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.options-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.group-title-row .options-btn {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.group:hover .group-title-row .options-btn {
+  opacity: 1;
+}
+.options-btn.small {
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.link-row:hover .options-btn.small {
+  opacity: 1;
+}

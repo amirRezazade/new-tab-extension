@@ -1,0 +1,115 @@
+.wallpaper-btn {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 50;
+  transition: background 0.15s ease;
+}
+
+.wallpaper-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.wallpaper-panel {
+  position: fixed;
+  bottom: 80px;
+  left: 24px;
+  width: 320px;
+  background: rgba(30, 30, 30, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  z-index: 50;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wallpaper-panel.open {
+  display: flex;
+}
+
+.wallpaper-panel h4 {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wallpaper-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.wallpaper-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wallpaper-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.wallpaper-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.wallpaper-item:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.wallpaper-item.active {
+  border-color: #3b82f6;
+}
+
+.wallpaper-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+.wallpaper-item span {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  padding: 5px 6px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.upload-wallpaper-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.upload-wallpaper-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}

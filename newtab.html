@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Tab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search..." id="searchInput" />
+    </div>
+    <div class="bookmarks-wrapper">
+      <div class="tab-bar">
+        <div class="tabs" id="tabsContainer">
+          <button class="tab active" data-tab="home">
+            Home
+            <span class="tab-arrow">▾</span>
+          </button>
+        </div>
+        <button class="add-tab-btn" id="addTabBtn">+</button>
+      </div>
+      <div class="tab-divider"></div>
+      <div class="link-groups">
+        <div class="group">
+          <h3>Work</h3>
+          <a href="https://notion.so" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" />
+            Notion
+          </a>
+          <a href="https://figma.com" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="" />
+            Figma
+          </a>
+        </div>
+
+        <div class="group">
+          <h3>Reading</h3>
+          <a href="https://news.ycombinator.com" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=32" alt="" />
+            Hacker News
+          </a>
+          <a href="https://medium.com" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=medium.com&sz=32" alt="" />
+            Medium
+          </a>
+        </div>
+
+        <div class="group">
+          <h3>Personal</h3>
+          <a href="https://gmail.com" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=32" alt="" />
+            Gmail
+          </a>
+          <a href="https://youtube.com" class="link-item">
+            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" alt="" />
+            YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <button class="wallpaper-btn" id="wallpaperBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <path d="M21 15l-5-5L5 21"></path>
+      </svg>
+    </button>
+
+    <div class="wallpaper-panel" id="wallpaperPanel">
+      <h4>Wallpapers</h4>
+      <div class="wallpaper-grid" id="wallpaperGrid"></div>
+      <button class="upload-wallpaper-btn" id="uploadWallpaperBtn">Upload Wallpaper</button>
+      <input type="file" id="wallpaperFileInput" accept="image/*" style="display: none" />
+    </div>
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <h3 id="modalTitle">Add Group</h3>
+        <form id="modalForm">
+          <div id="tabNameField">
+            <label>
+              Tab name
+              <input type="text" id="tabNameInput" placeholder="e.g. Work" />
+            </label>
+          </div>
+
+          <div id="groupNameField">
+            <label>
+              Group name
+              <input type="text" id="groupNameInput" placeholder="e.g. Work" />
+            </label>
+          </div>
+
+          <div id="linkFields">
+            <label>
+              Link name
+              <input type="text" id="linkNameInput" placeholder="e.g. Notion" />
+            </label>
+            <label>
+              URL
+              <input type="text" id="linkUrlInput" placeholder="e.g. notion.so" />
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="modalCancelBtn">Cancel</button>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-overlay" id="confirmModalOverlay">
+      <div class="modal">
+        <h3 id="confirmModalTitle">Title</h3>
+        <p id="confirmModalMessage"></p>
+        <form id="confirmModalForm">
+          <label id="confirmModalInputWrapper">
+            <input type="text" id="confirmModalInput" />
+          </label>
+          <div class="modal-actions">
+            <button type="button" id="confirmModalCancelBtn">Cancel</button>
+            <button type="submit" id="confirmModalSubmitBtn">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
