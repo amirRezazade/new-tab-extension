@@ -6,7 +6,7 @@
   pointer-events: none;
 } */
 .drag-over {
-  outline: 2px dashed rgba(255, 255, 255, 0.4);
+  outline: 2px dashed var(--accent);
   outline-offset: 2px;
 }
 

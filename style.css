@@ -4,8 +4,21 @@
 @import url(./styles/modals.css);
 @import url(./styles/dragging.css);
 
+@font-face {
+  font-family: "Vazirmatn";
+  src: url(./fonts/Vazirmatn-Regular.woff2) format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url(./fonts/Vazirmatn-Bold.woff2) format("woff2");
+  font-weight: 700;
+}
+
 :root {
   --accent: #3b82f6;
+  --text-color: #ffffff;
   --card-blur: 12px;
   --card-opacity: 0.12;
 }
@@ -18,8 +31,11 @@
 body {
   height: 100vh;
   width: 100vw;
-  background: url("bg.jpg") center/cover no-repeat;
-  font-family: -apple-system, "Segoe UI", Tahoma, sans-serif;
+  color: var(--text-color);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Vazirmatn", sans-serif;
   overflow: hidden;
   transition: background-image 0.3s ease;
 }

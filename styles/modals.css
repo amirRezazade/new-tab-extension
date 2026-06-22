@@ -47,7 +47,7 @@
 }
 
 .modal input:focus {
-  border-color: #3b82f6;
+  border-color: var(--accent);
 }
 
 .modal-actions {
@@ -65,17 +65,18 @@
   cursor: pointer;
 }
 
-#modalCancelBtn {
+/* #modalCancelBtn {
   background: transparent;
   color: rgba(255, 255, 255, 0.7);
-}
+} */
 
 .modal-actions button[type="submit"] {
   background: var(--accent);
   color: white;
 }
 #confirmModalMessage {
-  font-size: 13px;
+  direction: rtl;
+  font-size: 14px;
   opacity: 0.8;
   margin-bottom: 16px;
   line-height: 1.5;

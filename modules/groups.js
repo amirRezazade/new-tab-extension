@@ -57,7 +57,16 @@ function renderGroups() {
       a.draggable = false;
       const img = document.createElement("img");
       const domain = new URL(link.url).hostname;
-      img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+      img.src = `https://icons.duckduckgo.com/ip3/${domain}.ico`;
+
+      img.onerror = () => {
+        img.style.display = "none";
+        const fallback = document.createElement("span");
+        fallback.className = "link-icon-fallback";
+        fallback.textContent = link.name.charAt(0).toUpperCase();
+        a.insertBefore(fallback, a.firstChild);
+      };
+
       img.draggable = false;
       a.appendChild(img);
       a.appendChild(document.createTextNode(link.name));

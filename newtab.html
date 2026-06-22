@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="search-bar">
-      <span class="search-icon">
+      <label for="searchInput" class="search-icon">
         <svg xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img" viewBox="0 0 512 512" width="24" height="24" fill="#000000">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -19,7 +19,7 @@
             <path fill="#ea4335" d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z"></path>
           </g>
         </svg>
-      </span>
+      </label>
       <input type="text" placeholder="Search..." id="searchInput" />
     </div>
     <div class="bookmarks-wrapper">
@@ -94,15 +94,15 @@
 
       <!-- محتوای Theme -->
       <div class="panel-content" id="panelTheme" style="display: none">
-        <!-- رنگ‌های آماده -->
+        <!-- رنگ accent -->
         <p class="panel-label">Accent Color</p>
-        <div class="color-presets" id="colorPresets"></div>
+        <div class="color-presets" id="accentPresets"></div>
 
-        <!-- color picker سفارشی -->
-        <p class="panel-label">Custom Color</p>
-        <input type="color" id="accentColorPicker" value="#3b82f6" />
+        <!-- رنگ متن -->
+        <p class="panel-label">Text Color</p>
+        <div class="color-presets" id="textPresets"></div>
 
-        <!-- میزان بلور گروه‌ها -->
+        <!-- بلور کارت‌ها -->
         <p class="panel-label">Card Blur <span id="blurValue">12</span>px</p>
         <input type="range" id="blurRange" min="0" max="30" value="12" step="1" />
 
@@ -112,12 +112,6 @@
       </div>
     </div>
 
-    <div class="wallpaper-panel" id="wallpaperPanel">
-      <h4>Wallpapers</h4>
-      <div class="wallpaper-grid" id="wallpaperGrid"></div>
-      <button class="upload-wallpaper-btn" id="uploadWallpaperBtn">Upload Wallpaper</button>
-      <input type="file" id="wallpaperFileInput" accept="image/*" style="display: none" />
-    </div>
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal">
         <h3 id="modalTitle">Add Group</h3>

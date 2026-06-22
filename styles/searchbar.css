@@ -7,10 +7,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 20px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, var(--card-opacity));
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
 }
@@ -20,8 +20,9 @@
   background: transparent;
   border: none;
   outline: none;
-  color: white;
-  font-size: 15px;
+  color: var(--text-color);
+  font-size: 17px;
+  font-family: "Vazirmatn", sans-serif;
 }
 
 .search-bar input::placeholder {

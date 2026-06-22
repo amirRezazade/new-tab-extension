@@ -42,12 +42,6 @@
   display: flex;
 }
 
-.wallpaper-panel h4 {
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-}
-
 .wallpaper-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -79,7 +73,7 @@
 }
 
 .wallpaper-item.active {
-  border-color: #3b82f6;
+  border-color: var(--accent);
 }
 
 .wallpaper-item img {
@@ -163,15 +157,6 @@
 
 .color-preset.active {
   border-color: white;
-}
-
-#accentColorPicker {
-  width: 100%;
-  height: 36px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: transparent;
 }
 
 input[type="range"] {

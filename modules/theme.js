@@ -1,75 +1,73 @@
 import { state, saveState } from "./state.js";
 
-const colorPresets = [
-  "#3b82f6", // آبی
-  "#8b5cf6", // بنفش
-  "#10b981", // سبز
-  "#f59e0b", // نارنجی
-  "#ef4444", // قرمز
-  "#ec4899", // صورتی
-  "#06b6d4", // فیروزه‌ای
-  "#ffffff", // سفید
+const accentColors = [
+  "#635BFF", // Stripe Indigo — عمیق و حرفه‌ای
+  "#3ECF8E", // Supabase Green — سبز تازه و مدرن
+  "#F97316", // Vercel Orange — نارنجی گرم و پرانرژی
+  "#C4673A", // Anthropic Amber — خاکی گرم
+  "#06B6D4", // Cyan — فیروزه‌ای فوق‌العاده روی تصاویر تاریک
+  "#EC4899", // Pink — صورتی اشباع‌نشده
+  "#A78BFA", // Soft Violet — بنفش روشن و آروم
+];
+
+const textColors = [
+  "#F8FAFC", // تقریباً سفید — خیلی بهتر از #ffffff خالص
+  "#dcdcdc", // خاکستری روشن — neutral و خوانا
+  "#838383", // آبی کم‌رنگ — cool و مدرن
+  "#454545", // آبی کم‌رنگ — cool و مدرن
+  "#000000", // آبی کم‌رنگ — cool و مدرن
 ];
 
 function applyTheme(theme) {
   const root = document.documentElement;
   root.style.setProperty("--accent", theme.accent);
+  root.style.setProperty("--text-color", theme.textColor);
   root.style.setProperty("--card-blur", `${theme.blur}px`);
   root.style.setProperty("--card-opacity", theme.opacity / 100);
 }
 
-function renderColorPresets() {
-  const container = document.getElementById("colorPresets");
+function renderPresets(containerId, colors, currentColor, onSelect) {
+  const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  colorPresets.forEach((color) => {
+  colors.forEach((color) => {
     const btn = document.createElement("button");
-    btn.className = "color-preset" + (state.theme?.accent === color ? " active" : "");
+    btn.className = "color-preset" + (currentColor === color ? " active" : "");
     btn.style.background = color;
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      state.theme.accent = color;
-      document.getElementById("accentColorPicker").value = color;
-      applyTheme(state.theme);
-      saveState();
-      renderColorPresets();
+      onSelect(color);
     });
     container.appendChild(btn);
   });
 }
 
 export function initTheme() {
-  // مقدار پیش‌فرض اگه theme تو state نبود
   if (!state.theme) {
-    state.theme = { accent: "#3b82f6", blur: 12, opacity: 12 };
+    state.theme = {
+      accent: "#3b82f6",
+      textColor: "#ffffff",
+      blur: 12,
+      opacity: 12,
+    };
   }
 
   applyTheme(state.theme);
 
-  // سوئیچ بین تب‌های پنل
+  // سوئیچ تب‌های پنل
   document.querySelectorAll(".panel-tab").forEach((tab) => {
     tab.addEventListener("click", (e) => {
       e.stopPropagation();
       document.querySelectorAll(".panel-tab").forEach((t) => t.classList.remove("active"));
       document.querySelectorAll(".panel-content").forEach((c) => (c.style.display = "none"));
       tab.classList.add("active");
-      document.getElementById("panel" + tab.dataset.panel.charAt(0).toUpperCase() + tab.dataset.panel.slice(1)).style.display = "block";
-      if (tab.dataset.panel === "theme") renderColorPresets();
+      const panelId = "panel" + tab.dataset.panel.charAt(0).toUpperCase() + tab.dataset.panel.slice(1);
+      document.getElementById(panelId).style.display = "block";
+      if (tab.dataset.panel === "theme") renderThemePresets();
     });
   });
 
-  // color picker سفارشی
-  const picker = document.getElementById("accentColorPicker");
-  picker.value = state.theme.accent;
-  picker.addEventListener("input", (e) => {
-    e.stopPropagation();
-    state.theme.accent = e.target.value;
-    applyTheme(state.theme);
-    saveState();
-    renderColorPresets();
-  });
-
-  // blur slider
+  // blur
   const blurRange = document.getElementById("blurRange");
   blurRange.value = state.theme.blur;
   blurRange.addEventListener("input", (e) => {
@@ -80,7 +78,7 @@ export function initTheme() {
     saveState();
   });
 
-  // opacity slider
+  // opacity
   const opacityRange = document.getElementById("opacityRange");
   opacityRange.value = state.theme.opacity;
   opacityRange.addEventListener("input", (e) => {
@@ -89,5 +87,21 @@ export function initTheme() {
     document.getElementById("opacityValue").textContent = e.target.value;
     applyTheme(state.theme);
     saveState();
+  });
+}
+
+function renderThemePresets() {
+  renderPresets("accentPresets", accentColors, state.theme.accent, (color) => {
+    state.theme.accent = color;
+    applyTheme(state.theme);
+    saveState();
+    renderThemePresets();
+  });
+
+  renderPresets("textPresets", textColors, state.theme.textColor, (color) => {
+    state.theme.textColor = color;
+    applyTheme(state.theme);
+    saveState();
+    renderThemePresets();
   });
 }
