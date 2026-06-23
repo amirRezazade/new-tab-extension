@@ -3,13 +3,18 @@
   "name": "My New Tab",
   "version": "1.0.0",
   "description": "صفحه تب جدید سفارشی من",
+
+  "permissions": ["storage"],
+
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
+
   "host_permissions": ["https://icons.duckduckgo.com/*"],
+
   "icons": {
-    "16": "icons/git.png",
-    "48": "icons/html.png",
-    "128": "icons/react.png"
+    "16": "icons/icon.18.png",
+    "48": "icons/icon.48.png",
+    "128": "icons/icon.96.png"
   }
 }

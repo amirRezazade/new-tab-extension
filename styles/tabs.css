@@ -5,19 +5,22 @@
 }
 
 .link-groups {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 
 .group {
   background: rgba(255, 255, 255, var(--card-opacity));
+
   backdrop-filter: blur(var(--card-blur));
   -webkit-backdrop-filter: blur(var(--card-blur));
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.023);
   border-radius: 16px;
   padding: 16px;
-  width: 200px;
+  width: 100%;
   height: fit-content;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.22);
   color: var(--text-color);
 }
 
@@ -35,7 +38,7 @@
   gap: 12px;
   color: var(--text-color);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   padding-block: 6px;
   opacity: 0.85;
   transition: opacity 0.15s ease;
@@ -46,8 +49,8 @@
 }
 
 .link-item img {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   border-radius: 3px;
 }
 .tab-wrapper {
@@ -171,7 +174,6 @@
   border: 1px solid rgba(255, 255, 255, 0.358);
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.15s ease;
 }
 
 .add-tab-btn:hover {
@@ -236,9 +238,9 @@
 .options-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.653);
+  color: white;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   padding: 4px 8px;
   border-radius: 4px;
 }
@@ -256,7 +258,7 @@
   opacity: 1;
 }
 .options-btn.small {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0;
   transition: opacity 0.15s ease;
 }

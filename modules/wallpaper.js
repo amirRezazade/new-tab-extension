@@ -1,12 +1,17 @@
 import { state, saveState } from "./state.js";
 
 const starterWallpapers = [
-  { name: "Milky Way", url: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1920" },
-  { name: "Mountain", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920" },
-  { name: "Ocean Sunset", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920" },
-  { name: "Forest", url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920" },
-  { name: "City Night", url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920" },
-  { name: "Desert", url: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1920" },
+  { name: "Crescent Ember", url: "../images/wallpapers/1.jpg" },
+  { name: "Summit Glow", url: "../images/wallpapers/2.jpg" },
+  { name: "Violet Tempest", url: "../images/wallpapers/3.jpg" },
+  { name: "Wraith Circle", url: "../images/wallpapers/4.jpg" },
+  { name: "Wraith Circle", url: "../images/wallpapers/5.jpg" },
+  { name: "Mist Valley", url: "../images/wallpapers/6.jpg" },
+  { name: "Mist Valley", url: "../images/wallpapers/7.jpg" },
+  { name: "Solar Portal", url: "../images/wallpapers/8.jpg" },
+  { name: "Crimson Gate", url: "../images/wallpapers/9.jpg" },
+  { name: "Poppy Drift", url: "../images/wallpapers/10.jpg" },
+  { name: "Dragon Oath", url: "../images/wallpapers/11.jpg" },
 ];
 
 function setWallpaper(url) {
@@ -25,7 +30,7 @@ function renderWallpaperGrid() {
     item.className = "wallpaper-item" + (state.wallpaper === wp.url ? " active" : "");
 
     const img = document.createElement("img");
-    img.src = wp.url + "&w=400";
+    img.src = wp.url;
     img.loading = "lazy";
 
     const label = document.createElement("span");
@@ -53,15 +58,21 @@ export function initWallpaper() {
   // اگه والپیپر ذخیره‌شده داشت، اعمالش کن
   if (state.wallpaper) {
     document.body.style.backgroundImage = `url('${state.wallpaper}')`;
+  } else {
+    document.body.style.backgroundImage = `url('${starterWallpapers[0].url}')`;
+    state.wallpaper = starterWallpapers[0].url;
+    saveState();
   }
 
   // باز/بسته کردن پنل
   document.getElementById("wallpaperBtn").addEventListener("click", (e) => {
     e.stopPropagation();
+
     const panel = document.getElementById("wallpaperPanel");
     const isOpen = panel.classList.contains("open");
     if (!isOpen) renderWallpaperGrid();
     panel.classList.toggle("open");
+    document.getElementById("wallpaperBtn").classList.toggle("active");
   });
 
   // بستن با کلیک بیرون پنل
@@ -70,6 +81,7 @@ export function initWallpaper() {
     const btn = document.getElementById("wallpaperBtn");
     if (!panel.contains(e.target) && e.target !== btn) {
       panel.classList.remove("open");
+      document.getElementById("wallpaperBtn").classList.remove("active");
     }
   });
 

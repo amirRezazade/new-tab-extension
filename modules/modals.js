@@ -69,18 +69,20 @@ function openModal(mode, groupIndex = null) {
   groupField.style.display = "none";
   linkFields.style.display = "block";
 
+  modalOverlay.classList.add("open");
   if (mode === "tab") {
     tabField.style.display = "block";
     linkFields.style.display = "none"; // برای تب جدید فقط اسم لازمه
     modalTitle.textContent = "Add Tab";
+    setTimeout(() => document.getElementById("tabNameInput").focus(), 50);
   } else if (mode === "group") {
     groupField.style.display = "block";
     modalTitle.textContent = "Add Group";
+    setTimeout(() => document.getElementById("groupNameInput").focus(), 50);
   } else {
     modalTitle.textContent = "Add Link";
+    setTimeout(() => document.getElementById("linkNameInput").focus(), 50);
   }
-
-  modalOverlay.classList.add("open");
 }
 document.getElementById("addTabBtn").addEventListener("click", () => {
   openModal("tab");

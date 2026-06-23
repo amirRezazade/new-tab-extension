@@ -1,22 +1,7 @@
 import { state, saveState } from "./state.js";
 
-const accentColors = [
-  "#635BFF", // Stripe Indigo — عمیق و حرفه‌ای
-  "#3ECF8E", // Supabase Green — سبز تازه و مدرن
-  "#F97316", // Vercel Orange — نارنجی گرم و پرانرژی
-  "#C4673A", // Anthropic Amber — خاکی گرم
-  "#06B6D4", // Cyan — فیروزه‌ای فوق‌العاده روی تصاویر تاریک
-  "#EC4899", // Pink — صورتی اشباع‌نشده
-  "#A78BFA", // Soft Violet — بنفش روشن و آروم
-];
-
-const textColors = [
-  "#F8FAFC", // تقریباً سفید — خیلی بهتر از #ffffff خالص
-  "#dcdcdc", // خاکستری روشن — neutral و خوانا
-  "#838383", // آبی کم‌رنگ — cool و مدرن
-  "#454545", // آبی کم‌رنگ — cool و مدرن
-  "#000000", // آبی کم‌رنگ — cool و مدرن
-];
+const accentColors = ["#3b82f6", "#E31227", "#F97316", "#C4673A", "#635BFF", "#955CFE", "#3D7D8F", "#06B6D4", "#0AC272", "#EC4899", "#794785", "#EBBE84", "#C09772"];
+const textColors = ["#F8FAFC", "#dcdcdc", "#838383", "#454545", "#000000"];
 
 function applyTheme(theme) {
   const root = document.documentElement;

@@ -1,3 +1,5 @@
+const storage = chrome.storage.sync;
+// const storage = chrome.storage.local;
 let state = {
   activeTab: "home",
   wallpaper: null,
@@ -25,10 +27,10 @@ let state = {
   },
 };
 function saveState() {
-  chrome.storage.local.set({ appState: state });
+  storage.set({ appState: state });
 }
 function loadState(callback) {
-  chrome.storage.local.get(["appState"], (result) => {
+  storage.get(["appState"], (result) => {
     if (result.appState) {
       Object.assign(state, result.appState);
     }
