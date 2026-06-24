@@ -104,15 +104,3 @@
 .fab-btn:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-
-/* لیبل کنار دکمه */
-.fab-label {
-  display: none;
-  background: rgba(20, 20, 20, 0.75);
-  backdrop-filter: blur(8px);
-  color: white;
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 8px;
-  white-space: nowrap;
-}

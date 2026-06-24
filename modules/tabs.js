@@ -3,7 +3,7 @@ import { openConfirmModal } from "./modals.js";
 import { state, saveState } from "./state.js";
 
 const tabsContainer = document.getElementById("tabsContainer");
-
+let isDragging = false;
 tabsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
 
@@ -31,11 +31,11 @@ tabsContainer.addEventListener("drop", (e) => {
   if (!draggingEl) return;
 
   // ترتیب جدید رو از DOM بخون
-  const newOrder = [...tabsContainer.querySelectorAll(".tab-wrapper")].map((el) => el.dataset.tabId);
+  const newOrder = [...tabsContainer.querySelectorAll(".tab-wrapper")].map((el) => el.dataset.tabId).filter(Boolean); // ← فیلتر undefined ها
+  if (newOrder.length !== state.tabOrder.length) return; // ← اگه تعداد تب ها درست نبود، نادیده بگیر
 
   state.tabOrder = newOrder;
   saveState();
-  renderTabs();
 });
 
 function renderTabs() {
@@ -50,12 +50,18 @@ function renderTabs() {
     tabWrapper.addEventListener("dragstart", (e) => {
       tabWrapper.classList.add("dragging");
       e.stopPropagation();
+      isDragging = true;
     });
 
     tabWrapper.addEventListener("dragend", () => {
       tabWrapper.classList.remove("dragging");
+      setTimeout(() => {
+        isDragging = false;
+      }, 100);
+      renderTabs();
     });
     tabWrapper.addEventListener("click", () => {
+      if (isDragging) return;
       state.activeTab = tabId;
       renderTabs();
       renderGroups();

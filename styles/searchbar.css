@@ -1,9 +1,7 @@
 .search-bar {
-  position: absolute;
-  top: 35px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 35px;
   width: 420px;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   gap: 10px;

@@ -10,7 +10,6 @@
   outline-offset: 2px;
 }
 
-.group,
-.link-row {
+.group {
   cursor: grab;
 }

@@ -93,8 +93,9 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: white;
+  color: var(--text-color);
   pointer-events: none;
+  z-index: 99;
 }
 
 .clock-time {
