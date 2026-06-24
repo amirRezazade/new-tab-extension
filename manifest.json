@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "description": "صفحه تب جدید سفارشی من",
 
-  "permissions": ["storage"],
-
+  "permissions": ["storage", "tabs", "windows"],
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },

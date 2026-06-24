@@ -3,7 +3,7 @@ import { state, saveState } from "./state.js";
 const accentColors = ["#3b82f6", "#E31227", "#F97316", "#C4673A", "#635BFF", "#955CFE", "#3D7D8F", "#06B6D4", "#0AC272", "#EC4899", "#794785", "#EBBE84", "#C09772"];
 const textColors = ["#F8FAFC", "#dcdcdc", "#838383", "#454545", "#000000"];
 
-function applyTheme(theme) {
+export function applyTheme(theme) {
   const root = document.documentElement;
   root.style.setProperty("--accent", theme.accent);
   root.style.setProperty("--text-color", theme.textColor);

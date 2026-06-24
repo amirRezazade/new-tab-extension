@@ -55,6 +55,7 @@ function renderGroups() {
       a.href = link.url;
       a.className = "link-item";
       a.draggable = false;
+      a.target = state.settings?.openInNewTab ? "_blank" : "_self";
       const img = document.createElement("img");
       const domain = new URL(link.url).hostname;
       img.src = `https://icons.duckduckgo.com/ip3/${domain}.ico`;
@@ -70,7 +71,7 @@ function renderGroups() {
         e.stopPropagation();
         e.preventDefault();
         toggleItemMenu(linkOptionsBtn, [
-          { label: "Rename", action: () => renameLink(groupIndex, linkIndex) },
+          { label: "Edit", action: () => editLink(groupIndex, linkIndex) }, // ← به‌جای renameLink
           { label: "Delete", action: () => deleteLink(groupIndex, linkIndex), danger: true },
         ]);
       });
@@ -164,21 +165,44 @@ function closeItemMenu() {
   if (existing) existing.remove();
   openMenuAnchor = null;
 }
+function editLink(groupIndex, linkIndex) {
+  const link = state.tabs[state.activeTab].groups[groupIndex].links[linkIndex];
 
-function renameLink(groupIndex, linkIndex) {
-  const currentTab = state.tabs[state.activeTab];
-  const link = currentTab.groups[groupIndex].links[linkIndex];
+  const overlay = document.getElementById("editLinkOverlay");
+  document.getElementById("editLinkName").value = link.name;
+  document.getElementById("editLinkUrl").value = link.url;
+  overlay.classList.add("open");
+  // submit
+  const form = document.getElementById("editLinkForm");
+  const newForm = form.cloneNode(true); // clone برای حذف listener قبلی
+  form.parentNode.replaceChild(newForm, form);
 
-  openConfirmModal({
-    title: "Rename Link",
-    showInput: true,
-    inputValue: link.name,
-    onConfirm: (newName) => {
-      if (!newName) return;
-      link.name = newName;
-      renderGroups();
-      saveState();
-    },
+  setTimeout(() => document.getElementById("editLinkName").focus(), 50);
+
+  newForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let newUrl = document.getElementById("editLinkUrl").value.trim();
+    const newName = document.getElementById("editLinkName").value.trim();
+    if (!newName || !newUrl) return;
+
+    if (!newUrl.startsWith("http://") && !newUrl.startsWith("https://")) {
+      newUrl = "https://" + newUrl;
+    }
+
+    link.name = newName;
+    link.url = newUrl;
+
+    renderGroups();
+    saveState();
+    overlay.classList.remove("open");
+  });
+
+  document.getElementById("editLinkCancelBtn").addEventListener("click", () => {
+    overlay.classList.remove("open");
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.classList.remove("open");
   });
 }
 

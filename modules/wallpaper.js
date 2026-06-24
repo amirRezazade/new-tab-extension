@@ -1,6 +1,6 @@
 import { state, saveState } from "./state.js";
 
-const starterWallpapers = [
+export const starterWallpapers = [
   { name: "Crescent Ember", url: "../images/wallpapers/1.jpg" },
   { name: "Summit Glow", url: "../images/wallpapers/2.jpg" },
   { name: "Violet Tempest", url: "../images/wallpapers/3.jpg" },
@@ -56,13 +56,6 @@ function renderWallpaperGrid() {
 
 export function initWallpaper() {
   // اگه والپیپر ذخیره‌شده داشت، اعمالش کن
-  if (state.wallpaper) {
-    document.body.style.backgroundImage = `url('${state.wallpaper}')`;
-  } else {
-    document.body.style.backgroundImage = `url('${starterWallpapers[0].url}')`;
-    state.wallpaper = starterWallpapers[0].url;
-    saveState();
-  }
 
   // باز/بسته کردن پنل
   document.getElementById("wallpaperBtn").addEventListener("click", (e) => {

@@ -1,0 +1,118 @@
+.fab-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  z-index: 100;
+}
+
+/* دکمه اصلی */
+.fab-main {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, var(--card-opacity));
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.084);
+  transition: background 0.2s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fab-main:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.fab-main.open {
+  border-color: transparent;
+  transform: rotate(90deg);
+  background: var(--accent);
+}
+
+/* منوی دکمه‌ها */
+.fab-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none;
+}
+
+/* هر آیتم (دکمه + لیبل) */
+.fab-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.fab-menu.open .fab-item {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* انیمیشن استیگر — هر دکمه کمی دیرتر از قبلی */
+.fab-menu.open .fab-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.fab-menu.open .fab-item:nth-child(2) {
+  transition-delay: 0.05s;
+}
+.fab-menu.open .fab-item:nth-child(3) {
+  transition-delay: 0.1s;
+}
+.fab-menu.open .fab-item:nth-child(4) {
+  transition-delay: 0.15s;
+}
+.fab-menu.open .fab-item:nth-child(5) {
+  transition-delay: 0.2s;
+}
+
+/* دکمه‌های کوچیک */
+.fab-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, var(--card-opacity));
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.12);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fab-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* لیبل کنار دکمه */
+.fab-label {
+  display: none;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
