@@ -39,6 +39,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "Vazirmatn", sans-serif;
   overflow: hidden;
   transition: background-image 0.3s ease;
@@ -54,4 +55,13 @@ select:-webkit-autofill {
   transition: background-color 9999s ease-in-out 0s;
   caret-color: var(--text-color);
   font-size: 17px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 0px;
 }

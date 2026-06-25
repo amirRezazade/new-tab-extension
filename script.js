@@ -7,6 +7,7 @@ import { initTheme } from "./modules/theme.js";
 import { initFab } from "./modules/fab.js";
 import { initSettings } from "./modules/setting.js";
 import { initSearchLinks } from "./modules/search-links.js";
+import { initSortable } from "./modules/sortable.js";
 
 loadState(() => {
   renderTabs();
@@ -17,6 +18,7 @@ loadState(() => {
   initFab();
   initSettings();
   initSearchLinks();
+  initSortable();
 });
 
 // بستن منو با کلیک هر جای دیگه صفحه

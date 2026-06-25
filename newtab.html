@@ -37,42 +37,11 @@
         <button class="add-tab-btn" id="addTabBtn">+</button>
       </div>
       <div class="tab-divider"></div>
-      <div class="link-groups">
-        <div class="group">
-          <h3>Work</h3>
-          <a href="https://notion.so" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" />
-            Notion
-          </a>
-          <a href="https://figma.com" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="" />
-            Figma
-          </a>
-        </div>
-
-        <div class="group">
-          <h3>Reading</h3>
-          <a href="https://news.ycombinator.com" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=32" alt="" />
-            Hacker News
-          </a>
-          <a href="https://medium.com" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=medium.com&sz=32" alt="" />
-            Medium
-          </a>
-        </div>
-
-        <div class="group">
-          <h3>Personal</h3>
-          <a href="https://gmail.com" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=32" alt="" />
-            Gmail
-          </a>
-          <a href="https://youtube.com" class="link-item">
-            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" alt="" />
-            YouTube
-          </a>
-        </div>
+      <div class="columns-container" id="columnsContainer">
+        <div class="column" data-col="0"></div>
+        <div class="column" data-col="1"></div>
+        <div class="column" data-col="2"></div>
+        <div class="column" data-col="3"></div>
       </div>
     </div>
     <button class="wallpaper-btn" id="wallpaperBtn">
@@ -308,6 +277,7 @@
         </form>
       </div>
     </div>
+    <script src="libs/Sortable.min.js"></script>
     <script src="script.js" type="module"></script>
   </body>
 </html>

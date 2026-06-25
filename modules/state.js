@@ -70,4 +70,10 @@ function loadState(callback) {
     });
   });
 }
-export { state, saveState, loadState };
+function saveStateNow() {
+  if (saveTimer) clearTimeout(saveTimer);
+  const { wallpaper, ...stateWithoutWallpaper } = state;
+  storage.set({ appState: stateWithoutWallpaper });
+  chrome.storage.local.set({ wallpaper });
+}
+export { state, saveState, loadState, saveStateNow };

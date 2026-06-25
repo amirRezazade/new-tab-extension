@@ -1,6 +1,7 @@
 import { renderGroups } from "./groups.js";
 import { state, saveState } from "./state.js";
 import { renderTabs } from "./tabs.js";
+let modalColIndex = 0;
 
 const confirmModalOverlay = document.getElementById("confirmModalOverlay");
 const confirmModalForm = document.getElementById("confirmModalForm");
@@ -54,7 +55,8 @@ const modalForm = document.getElementById("modalForm");
 let modalMode = "group"; // یا 'link'
 let modalGroupIndex = null; // فقط وقتی mode === 'link' لازمه
 
-function openModal(mode, groupIndex = null) {
+function openModal(mode, groupIndex = null, colIndex = 0) {
+  modalColIndex = colIndex;
   modalMode = mode;
   modalGroupIndex = groupIndex;
   modalForm.reset();
@@ -125,14 +127,17 @@ modalForm.addEventListener("submit", (e) => {
   }
 
   if (modalMode === "group") {
-    const groupName = document.getElementById("groupNameInput").value.trim();
+    const groupName = document.getElementById("groupNameInput").value.trim(); // ← این خط رو اضافه کن
     if (!groupName) return;
-
+    const groupId = "group-" + Date.now();
     const newGroup = { title: groupName, links: [] };
-    if (linkName && linkUrl) {
-      newGroup.links.push({ name: linkName, url: linkUrl });
-    }
     currentTab.groups.push(newGroup);
+    const newGroupIndex = currentTab.groups.length - 1;
+
+    if (!currentTab.columns) {
+      currentTab.columns = [[], [], [], []];
+    }
+    currentTab.columns[modalColIndex].push(groupId);
   } else if (modalMode === "link") {
     if (!linkName || !linkUrl) return;
     currentTab.groups[modalGroupIndex].links.push({ name: linkName, url: linkUrl });

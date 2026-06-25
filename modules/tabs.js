@@ -1,9 +1,8 @@
 import { renderGroups } from "./groups.js";
 import { openConfirmModal } from "./modals.js";
 import { state, saveState } from "./state.js";
-
+import { initTabSortable } from "./sortable.js";
 const tabsContainer = document.getElementById("tabsContainer");
-let isDragging = false;
 tabsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
 
@@ -46,22 +45,8 @@ function renderTabs() {
     const tabWrapper = document.createElement("button");
     tabWrapper.className = "tab-wrapper" + (tabId === state.activeTab ? " active" : "");
     tabWrapper.dataset.tabId = tabId; // ← اضافه شد
-    tabWrapper.draggable = true;
-    tabWrapper.addEventListener("dragstart", (e) => {
-      tabWrapper.classList.add("dragging");
-      e.stopPropagation();
-      isDragging = true;
-    });
 
-    tabWrapper.addEventListener("dragend", () => {
-      tabWrapper.classList.remove("dragging");
-      setTimeout(() => {
-        isDragging = false;
-      }, 100);
-      renderTabs();
-    });
     tabWrapper.addEventListener("click", () => {
-      if (isDragging) return;
       state.activeTab = tabId;
       renderTabs();
       renderGroups();
@@ -83,6 +68,7 @@ function renderTabs() {
     tabWrapper.appendChild(optionsBtn);
     container.appendChild(tabWrapper);
   });
+  initTabSortable();
 }
 function renameTab(tabId) {
   openConfirmModal({

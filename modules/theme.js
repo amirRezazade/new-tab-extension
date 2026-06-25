@@ -14,7 +14,6 @@ export function applyTheme(theme) {
 function renderPresets(containerId, colors, currentColor, onSelect) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
-  console.log(colors);
 
   colors.forEach((color) => {
     const btn = document.createElement("button");
