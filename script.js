@@ -8,6 +8,7 @@ import { initFab } from "./modules/fab.js";
 import { initSettings } from "./modules/setting.js";
 import { initSearchLinks } from "./modules/search-links.js";
 import { initSortable } from "./modules/sortable.js";
+import { initWeather } from "./modules/weather.js";
 
 loadState(() => {
   renderTabs();
@@ -18,6 +19,7 @@ loadState(() => {
   initFab();
   initSettings();
   initSearchLinks();
+  initWeather();
   initSortable();
 });
 

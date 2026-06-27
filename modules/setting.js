@@ -4,6 +4,7 @@ import { renderGroups } from "./groups.js";
 import { openConfirmModal } from "./modals.js";
 import { applyTheme } from "./theme.js";
 import { exportData, importData } from "./data-transfer.js";
+import { initWeather } from "./weather.js";
 // ساعت
 let clockInterval = null;
 
@@ -119,3 +120,54 @@ export function initSettings() {
     }
   });
 }
+const cityInput = document.getElementById("settingCity");
+const suggestions = document.getElementById("citySuggestions");
+
+cityInput.value = state.settings?.city || "";
+
+cityInput.addEventListener("input", async (e) => {
+  const query = e.target.value.trim();
+  if (!query) {
+    suggestions.style.display = "none";
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=fa&countryCode=IR`);
+    const data = await res.json();
+
+    if (!data.results?.length) {
+      suggestions.style.display = "none";
+      return;
+    }
+
+    suggestions.innerHTML = "";
+    data.results.forEach((city) => {
+      const btn = document.createElement("button");
+      btn.className = "city-suggestion-item";
+      btn.textContent = `${city.name} — ${city.admin1 || ""}`;
+      btn.addEventListener("click", () => {
+        // ذخیره lat/lon به‌جای اسم شهر
+        state.settings.city = city.name;
+        state.settings.cityLat = city.latitude;
+        state.settings.cityLon = city.longitude;
+        cityInput.value = city.name;
+        suggestions.style.display = "none";
+        saveState();
+        initWeather();
+      });
+      suggestions.appendChild(btn);
+    });
+
+    suggestions.style.display = "flex";
+  } catch {
+    suggestions.style.display = "none";
+  }
+});
+
+// بستن suggestions با کلیک بیرون
+document.addEventListener("click", (e) => {
+  if (!cityInput.contains(e.target) && !suggestions.contains(e.target)) {
+    suggestions.style.display = "none";
+  }
+});

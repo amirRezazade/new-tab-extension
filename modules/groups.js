@@ -59,6 +59,7 @@ function buildGroupEl(group, groupIndex) {
     const img = document.createElement("img");
     const domain = new URL(link.url).hostname;
     img.src = `https://icons.duckduckgo.com/ip3/${domain}.ico`;
+
     img.draggable = false;
 
     a.appendChild(img);

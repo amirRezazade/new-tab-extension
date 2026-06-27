@@ -9,8 +9,7 @@
     "newtab": "newtab.html"
   },
 
-  "host_permissions": ["https://icons.duckduckgo.com/*"],
-
+  "host_permissions": ["https://api.open-meteo.com/*", "https://geocoding-api.open-meteo.com/*", "https://icons.duckduckgo.com/*"],
   "icons": {
     "16": "icons/icon.18.png",
     "48": "icons/icon.48.png",

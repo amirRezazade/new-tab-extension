@@ -24,6 +24,11 @@
     </div>
     <div class="clock-widget" id="clockWidget">
       <div class="clock-time" id="clockTime">00:00</div>
+      <div class="weather-widget" id="weatherWidget" style="display: none">
+        <img src="" alt="weather icon" id="weatherIcon" width="20px" height="20px" />
+        <span id="weatherTemp"></span>
+        <span id="weatherCity"></span>
+      </div>
       <div class="clock-date" id="clockDate">Monday, Jan 1</div>
     </div>
     <div class="bookmarks-wrapper">
@@ -167,7 +172,7 @@
 
         <div class="settings-group">
           <label class="settings-row">
-            <span>Show Clock & Date</span>
+            <span>Show Clock & Date & Weather</span>
             <input type="checkbox" id="settingClock" />
           </label>
 
@@ -182,6 +187,13 @@
           </label>
         </div>
 
+        <div class="settings-group city-settings-group">
+          <label class="settings-row">
+            <span>City (for weather)</span>
+            <input type="text" id="settingCity" dir="rtl" placeholder="مثلاً تهران" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 6px 10px; color: white; outline: none; width: 120px; font-size: 13px" />
+          </label>
+          <div id="citySuggestions" style="display: none"></div>
+        </div>
         <div class="settings-group">
           <button class="settings-btn" id="settingExport">
             <span> Export Data </span>

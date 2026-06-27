@@ -130,7 +130,8 @@ modalForm.addEventListener("submit", (e) => {
     const groupName = document.getElementById("groupNameInput").value.trim(); // ← این خط رو اضافه کن
     if (!groupName) return;
     const groupId = "group-" + Date.now();
-    const newGroup = { title: groupName, links: [] };
+    const newGroup = { id: groupId, title: groupName, links: [] };
+
     currentTab.groups.push(newGroup);
     const newGroupIndex = currentTab.groups.length - 1;
 

@@ -65,3 +65,8 @@ select:-webkit-autofill {
   background: transparent;
   border-radius: 0px;
 }
+::selection {
+  background-color: var(--accent);
+  color: white;
+  opacity: 100;
+}
