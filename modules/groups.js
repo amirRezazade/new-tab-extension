@@ -49,6 +49,7 @@ function buildGroupEl(group, groupIndex) {
     const linkRow = document.createElement("div");
     linkRow.className = "link-row";
     linkRow.dataset.linkUrl = link.url;
+    linkRow.dataset.linkId = link.id;
 
     const a = document.createElement("a");
     a.href = link.url;
@@ -83,8 +84,8 @@ function buildGroupEl(group, groupIndex) {
       e.stopPropagation();
       e.preventDefault();
       toggleItemMenu(linkOptionsBtn, [
-        { label: "Edit", action: () => editLink(groupIndex, linkIndex) },
-        { label: "Delete", action: () => deleteLink(groupIndex, linkIndex), danger: true },
+        { label: "Edit", action: () => editLink(groupIndex, link.id) },
+        { label: "Delete", action: () => deleteLink(groupIndex, link.id), danger: true },
       ]);
     });
 
@@ -104,6 +105,11 @@ function renderGroups() {
     if (!group.id) {
       group.id = "group-" + Date.now() + "-" + i;
     }
+    group.links.forEach((link) => {
+      if (!link.id) {
+        link.id = "link-" + Date.now() + "-" + Math.random();
+      }
+    });
   });
 
   // migration: مطمئن شو همه گروه‌ها تو یه ستون هستن
@@ -315,8 +321,10 @@ function closeItemMenu() {
   }
   openMenuAnchor = null;
 }
-function editLink(groupIndex, linkIndex) {
-  const link = state.tabs[state.activeTab].groups[groupIndex].links[linkIndex];
+function editLink(groupIndex, linkId) {
+  const currentTab = state.tabs[state.activeTab];
+  const link = currentTab.groups[groupIndex].links.find((l) => l.id === linkId);
+  if (!link) return;
 
   const overlay = document.getElementById("editLinkOverlay");
   document.getElementById("editLinkName").value = link.name;
@@ -356,17 +364,15 @@ function editLink(groupIndex, linkIndex) {
   });
 }
 
-function deleteLink(groupIndex, linkIndex) {
+function deleteLink(groupIndex, linkId) {
   const currentTab = state.tabs[state.activeTab];
-  const link = currentTab.groups[groupIndex].links[linkIndex];
-
   openConfirmModal({
     title: "Delete Link",
-    message: `مطمئنی می‌خوای "${link.name}" رو پاک کنی؟`,
+    message: `مطمئنی می‌خوای این لینک رو پاک کنی؟`,
     danger: true,
     confirmText: "Delete",
     onConfirm: () => {
-      currentTab.groups[groupIndex].links.splice(linkIndex, 1);
+      currentTab.groups[groupIndex].links = currentTab.groups[groupIndex].links.filter((l) => l.id !== linkId);
       renderGroups();
       saveState();
     },

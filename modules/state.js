@@ -65,6 +65,9 @@ let state = {
     showClock: true,
     showSearch: true,
     openInNewTab: true,
+    city: "تبریز",
+    cityLat: 38.0962,
+    cityLon: 46.2738,
   },
 };
 

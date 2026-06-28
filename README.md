@@ -2,7 +2,7 @@
 
 > یه صفحه تب جدید سفارشی برای کروم با قابلیت مدیریت لینک‌ها، تب‌ها، گروه‌ها و شخصی‌سازی کامل
 
-![Nova New Tab Preview](./screenshots/preview.png)
+![Nova New Tab Preview](./images/demo.jpg)
 
 ---
 
@@ -10,6 +10,7 @@
 
 ### 📌 مدیریت لینک‌ها
 
+- افزودن سریع لینک از هر صفحه با popup
 - ساخت **تب‌های** مختلف (مثلاً Work، Personal، Reading)
 - ساخت **گروه‌های لینک** داخل هر تب
 - اضافه، ویرایش و حذف لینک‌ها
@@ -60,6 +61,8 @@ Nova-Tab/
 ├── newtab.html           # صفحه اصلی
 ├── style.css             # استایل‌ها
 ├── script.js             # نقطه ورود
+├── popup.html            # popup افزودن سریع لینک
+├── popup.js              # منطق popup
 ├── fonts/                # فونت Vazirmatn
 ├── icons/                # آیکون‌های اکستنشن
 ├── images/

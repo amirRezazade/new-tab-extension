@@ -39,10 +39,9 @@ export function initLinkSortable(groupEl, groupIndex) {
       const currentTab = state.tabs[state.activeTab];
       const links = currentTab.groups[groupIndex].links;
 
-      // ترتیب جدید از DOM
-      const newOrder = [...evt.to.querySelectorAll(".link-row")].map((el) => el.dataset.linkUrl).filter(Boolean);
+      const newOrder = [...evt.to.querySelectorAll(".link-row")].map((el) => el.dataset.linkId).filter(Boolean);
 
-      currentTab.groups[groupIndex].links = newOrder.map((url) => links.find((l) => l.url === url)).filter(Boolean);
+      currentTab.groups[groupIndex].links = newOrder.map((id) => links.find((l) => l.id === id)).filter(Boolean);
 
       saveStateNow();
     },

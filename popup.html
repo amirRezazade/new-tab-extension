@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: "Vazirmatn";
+        src: url(./fonts/Vazirmatn-Regular.woff2) format("woff2");
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "Vazirmatn";
+        src: url(./fonts/Vazirmatn-Bold.woff2) format("woff2");
+        font-weight: 700;
+      }
+      * {
+        font-family: "Vazirmatn", sans-serif;
+      }
+      body {
+        width: 280px;
+        padding: 16px;
+        background: #1a1a1a;
+        color: white;
+      }
+
+      h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+        opacity: 0.8;
+      }
+
+      .page-info {
+        font-size: 12px;
+        opacity: 0.5;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      select {
+        width: 100%;
+        padding: 8px 10px;
+        background-color: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        color: white;
+        font-size: 13px;
+        margin-bottom: 10px;
+        outline: none;
+      }
+      option {
+        background: rgb(48, 48, 48) !important;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #5e6ad2;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #4f5bc0;
+      }
+
+      .success {
+        text-align: center;
+        font-size: 13px;
+        color: #3ecf8e;
+        padding: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Add to Nova</h3>
+    <div class="page-info" id="pageUrl"></div>
+
+    <!-- <label style="display: block; font-size: 12px; opacity: 0.6; margin-bottom: 6px">Title</label> -->
+    <input type="text" id="linkTitle" style="width: 100%; padding: 8px 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: white; font-size: 13px; margin-bottom: 10px; outline: none; box-sizing: border-box" />
+    <select id="groupSelect"></select>
+    <button id="addBtn">Add Link</button>
+    <div class="success" id="successMsg" style="display: none">✓ اضافه شد!</div>
+    <script src="popup.js"></script>
+  </body>
+</html>

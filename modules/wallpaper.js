@@ -12,6 +12,9 @@ export const starterWallpapers = [
   { name: "Solar Portal", url: "../images/wallpapers/8.jpg" },
   { name: "Crimson Gate", url: "../images/wallpapers/9.jpg" },
   { name: "Poppy Drift", url: "../images/wallpapers/10.jpg" },
+  { name: "Lonely road", url: "../images/wallpapers/12.jpg" },
+  { name: "Desert car", url: "../images/wallpapers/13.jpg" },
+  { name: "Laid Streaks", url: "../images/wallpapers/14.jpg" },
 ];
 
 function setWallpaper(url) {

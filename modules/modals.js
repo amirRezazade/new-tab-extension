@@ -141,7 +141,11 @@ modalForm.addEventListener("submit", (e) => {
     currentTab.columns[modalColIndex].push(groupId);
   } else if (modalMode === "link") {
     if (!linkName || !linkUrl) return;
-    currentTab.groups[modalGroupIndex].links.push({ name: linkName, url: linkUrl });
+    currentTab.groups[modalGroupIndex].links.push({
+      id: "link-" + Date.now(), // ← اضافه شد
+      name: linkName,
+      url: linkUrl,
+    });
   }
 
   renderGroups();
