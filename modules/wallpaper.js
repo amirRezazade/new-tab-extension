@@ -1,6 +1,7 @@
 import { state, saveState } from "./state.js";
 
 export const starterWallpapers = [
+  { name: "Dragon Oath", url: "../images/wallpapers/11.jpg" },
   { name: "Crescent Ember", url: "../images/wallpapers/1.jpg" },
   { name: "Summit Glow", url: "../images/wallpapers/2.jpg" },
   { name: "Violet Tempest", url: "../images/wallpapers/3.jpg" },
@@ -11,7 +12,6 @@ export const starterWallpapers = [
   { name: "Solar Portal", url: "../images/wallpapers/8.jpg" },
   { name: "Crimson Gate", url: "../images/wallpapers/9.jpg" },
   { name: "Poppy Drift", url: "../images/wallpapers/10.jpg" },
-  { name: "Dragon Oath", url: "../images/wallpapers/11.jpg" },
 ];
 
 function setWallpaper(url) {

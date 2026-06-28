@@ -95,7 +95,7 @@
   text-align: center;
   color: var(--text-color);
   pointer-events: none;
-  z-index: 99;
+  z-index: 0;
 }
 
 .clock-time {

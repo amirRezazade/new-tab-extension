@@ -1,33 +1,73 @@
 import { starterWallpapers } from "./wallpaper.js";
 
 const storage = chrome.storage.sync;
-// const storage = chrome.storage.local;
+
 let state = {
   activeTab: "home",
-  wallpaper: null,
-  tabOrder: ["home"],
+  wallpaper: "../images/wallpapers/11.jpg",
+  tabOrder: ["home", "work"],
   tabs: {
     home: {
       name: "Home",
       groups: [
         {
-          title: "Work",
+          id: "group-default-1",
+          title: "Social",
           links: [
-            { name: "Notion", url: "https://notion.so" },
-            { name: "Figma", url: "https://figma.com" },
+            { name: "YouTube", url: "https://youtube.com" },
+            { name: "Twitter", url: "https://twitter.com" },
+            { name: "Instagram", url: "https://instagram.com" },
           ],
         },
         {
-          title: "Reading",
+          id: "group-default-2",
+          title: "Tools",
           links: [
-            { name: "Hacker News", url: "https://news.ycombinator.com" },
-            { name: "Medium", url: "https://medium.com" },
+            { name: "Gmail", url: "https://gmail.com" },
+            { name: "Google Drive", url: "https://drive.google.com" },
+            { name: "Google Translate", url: "https://translate.google.com" },
           ],
         },
       ],
+      columns: [["group-default-1"], ["group-default-2"], [], []],
+    },
+    work: {
+      name: "Work",
+      groups: [
+        {
+          id: "group-default-3",
+          title: "Design",
+          links: [
+            { name: "Figma", url: "https://figma.com" },
+            { name: "Dribbble", url: "https://dribbble.com" },
+          ],
+        },
+        {
+          id: "group-default-4",
+          title: "Dev",
+          links: [
+            { name: "GitHub", url: "https://github.com" },
+            { name: "Stack Overflow", url: "https://stackoverflow.com" },
+            { name: "MDN", url: "https://developer.mozilla.org" },
+          ],
+        },
+      ],
+      columns: [["group-default-3"], ["group-default-4"], [], []],
     },
   },
+  theme: {
+    accent: "#c09772",
+    textColor: "#F8FAFC",
+    blur: 0,
+    opacity: 0,
+  },
+  settings: {
+    showClock: true,
+    showSearch: true,
+    openInNewTab: true,
+  },
 };
+
 let saveTimer = null;
 
 function saveState() {
@@ -51,25 +91,25 @@ function loadState(callback) {
       if (syncResult.appState) {
         Object.assign(state, syncResult.appState);
       }
-      if (!state.wallpaper) {
-        state.wallpaper = starterWallpapers[0].url;
-      }
       if (localResult.wallpaper) {
         state.wallpaper = localResult.wallpaper;
         document.body.style.backgroundImage = `url('${localResult.wallpaper}')`;
-      } else if (state.wallpaper?.startsWith("http")) {
-        // اگه local نبود ولی sync داشت (preset)، از sync بخون
+      } else if (state.wallpaper) {
         document.body.style.backgroundImage = `url('${state.wallpaper}')`;
       }
 
       if (!state.tabOrder) {
         state.tabOrder = Object.keys(state.tabs);
       }
+      if (!state.tabs[state.activeTab]) {
+        state.activeTab = state.tabOrder[0];
+      }
 
       callback();
     });
   });
 }
+
 function saveStateNow() {
   if (saveTimer) clearTimeout(saveTimer);
   const { wallpaper, ...stateWithoutWallpaper } = state;

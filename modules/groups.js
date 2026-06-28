@@ -54,7 +54,18 @@ function buildGroupEl(group, groupIndex) {
     a.href = link.url;
     a.className = "link-item";
     a.draggable = false;
-    a.target = state.settings?.openInNewTab ? "_blank" : "_self";
+    a.addEventListener("click", (e) => {
+      if (state.settings?.openInNewTab) {
+        e.preventDefault();
+        try {
+          chrome.tabs.create({ url: link.url, active: false });
+        } catch {
+          // اگه نشد، به روش معمولی باز کن
+          window.open(link.url, "_blank");
+        }
+      }
+    });
+    // a.target = state.settings?.openInNewTab ? "_blank" : "_self";
 
     const img = document.createElement("img");
     const domain = new URL(link.url).hostname;

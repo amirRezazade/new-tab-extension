@@ -1,16 +1,31 @@
 .bookmarks-wrapper {
-  padding-top: 45px;
-  max-width: 80%;
-  margin: 0 auto;
+  padding-inline: 40px;
 }
-
 .columns-container {
   min-height: 67vh;
   max-height: 67vh;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   overflow-y: auto;
   pointer-events: all;
+}
+
+@media screen and (min-width: 800px) {
+  .columns-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1100px) {
+  .bookmarks-wrapper {
+    max-width: 85%;
+  }
+}
+
+.bookmarks-wrapper {
+  padding-top: 45px;
+
+  margin: 0 auto;
 }
 
 .column {
@@ -21,7 +36,9 @@
   pointer-events: all;
   min-height: 100%;
   overflow: hidden;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 
 /* گروه‌ها داخل ستون */
@@ -79,7 +96,6 @@
   position: relative;
   z-index: 15;
   overflow: visible;
-
   display: flex;
   align-items: center;
   gap: 8px;
@@ -116,7 +132,10 @@
   border-left: 1px solid transparent;
   fill: var(--text-color);
   cursor: pointer;
-  transition: opacity 0.1s, background 0.1s, border-color 0.1s;
+  transition:
+    opacity 0.1s,
+    background 0.1s,
+    border-color 0.1s;
 }
 
 .tab-wrapper:hover .tab-options-btn {

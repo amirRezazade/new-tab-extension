@@ -1,4 +1,5 @@
 import { exportData, importData } from "./data-transfer.js";
+import { state } from "./state.js";
 
 export function initFab() {
   const fabMain = document.getElementById("fabMain");
@@ -10,6 +11,10 @@ export function initFab() {
     const isOpen = fabMenu.classList.contains("open");
     fabMenu.classList.toggle("open");
     fabMain.classList.toggle("open");
+
+    const cityInput = document.getElementById("settingCity");
+
+    cityInput.value = state.settings?.city || "";
   });
 
   // بستن با کلیک بیرون
