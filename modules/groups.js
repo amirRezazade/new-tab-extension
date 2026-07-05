@@ -335,7 +335,12 @@ function editLink(groupIndex, linkId) {
   const newForm = form.cloneNode(true); // clone برای حذف listener قبلی
   form.parentNode.replaceChild(newForm, form);
 
-  setTimeout(() => document.getElementById("editLinkName").focus(), 50);
+  setTimeout(() => {
+    let input = document.getElementById("editLinkName");
+    input.focus();
+    const length = input.value.length;
+    input.setSelectionRange(length, length);
+  }, 50);
 
   newForm.addEventListener("submit", (e) => {
     e.preventDefault();

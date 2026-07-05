@@ -41,7 +41,7 @@ export async function initWeather() {
 
     const temp = Math.round(data.current.temperature_2m);
     const code = data.current.weathercode;
-    const weather = weatherCodes[code] || { icon: "🌡️" };
+    const weather = weatherCodes[code] || { icon: "../images/weather-icons/temperature.png" };
 
     document.getElementById("weatherIcon").src = `${weather.icon}`;
     document.getElementById("weatherTemp").textContent = `${temp}°C`;
