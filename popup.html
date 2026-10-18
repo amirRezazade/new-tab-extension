@@ -1,91 +1,118 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <style>
-      @font-face {
-        font-family: "Vazirmatn";
-        src: url(./fonts/Vazirmatn-Regular.woff2) format("woff2");
-        font-weight: 400;
-      }
-
-      @font-face {
-        font-family: "Vazirmatn";
-        src: url(./fonts/Vazirmatn-Bold.woff2) format("woff2");
-        font-weight: 700;
-      }
-      * {
-        font-family: "Vazirmatn", sans-serif;
-      }
-      body {
-        width: 280px;
-        padding: 16px;
-        background: #1a1a1a;
-        color: white;
-      }
-
-      h3 {
-        font-size: 14px;
-        margin-bottom: 12px;
-        opacity: 0.8;
-      }
-
-      .page-info {
-        font-size: 12px;
-        opacity: 0.5;
-        margin-bottom: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      select {
-        width: 100%;
-        padding: 8px 10px;
-        background-color: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 8px;
-        color: white;
-        font-size: 13px;
-        margin-bottom: 10px;
-        outline: none;
-      }
-      option {
-        background: rgb(48, 48, 48) !important;
-      }
-
-      button {
-        width: 100%;
-        padding: 10px;
-        background: #5e6ad2;
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-size: 13px;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background: #4f5bc0;
-      }
-
-      .success {
-        text-align: center;
-        font-size: 13px;
-        color: #3ecf8e;
-        padding: 8px 0;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Save to NovaTab</title>
+    <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h3>Add to Nova</h3>
-    <div class="page-info" id="pageUrl"></div>
+    <main class="popup-shell">
+      <header class="popup-header">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="assets/icons/icon48.png" alt="" />
+        </div>
+        <div class="popup-header__copy">
+          <p class="eyebrow">NOVATAB</p>
+          <h1>Save this page</h1>
+        </div>
+        <button class="icon-button" id="refresh-page-button" type="button" aria-label="Refresh current page" title="Refresh page details">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4.7 9a7.5 7.5 0 0 1 12.6-2L20 12M4 17v-5h5m10.3 3a7.5 7.5 0 0 1-12.6 2L4 12" /></svg>
+        </button>
+      </header>
 
-    <!-- <label style="display: block; font-size: 12px; opacity: 0.6; margin-bottom: 6px">Title</label> -->
-    <input type="text" id="linkTitle" style="width: 100%; padding: 8px 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: white; font-size: 13px; margin-bottom: 10px; outline: none; box-sizing: border-box" />
-    <select id="groupSelect"></select>
-    <button id="addBtn">Add Link</button>
-    <div class="success" id="successMsg" style="display: none">✓ اضافه شد!</div>
-    <script src="popup.js"></script>
+      <section class="page-card" aria-label="Current page">
+        <div class="page-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8.5" />
+            <path d="M3.8 12h16.4M12 3.5a13.2 13.2 0 0 1 0 17m0-17a13.2 13.2 0 0 0 0 17" />
+          </svg>
+        </div>
+        <div class="page-card__copy">
+          <p class="page-card__label">CURRENT PAGE</p>
+          <h2 id="current-page-title">Loading page details…</h2>
+          <p class="page-card__url" id="current-page-url">Checking the active tab</p>
+        </div>
+      </section>
+
+      <form class="save-form" id="save-link-form" novalidate>
+        <div class="form-field">
+          <label for="tab-select">Dashboard tab</label>
+          <div class="select-wrap">
+            <select id="tab-select" name="tab" required disabled></select>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="group-select">Group</label>
+          <div class="select-wrap">
+            <select id="group-select" name="group" required disabled></select>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+          </div>
+          <p class="field-note" id="group-note" hidden></p>
+        </div>
+
+        <div class="form-field new-group-field" id="new-group-field" hidden>
+          <label for="new-group-name">New group name</label>
+          <input id="new-group-name" name="newGroupName" type="text" maxlength="32" autocomplete="off" placeholder="e.g. Research" disabled />
+        </div>
+
+        <div class="form-field">
+          <label for="link-title">Link title</label>
+          <input id="link-title" name="title" type="text" maxlength="120" autocomplete="off" placeholder="Name this link" required disabled />
+        </div>
+
+        <p class="popup-status" id="popup-status" role="status" aria-live="polite" aria-atomic="true"></p>
+
+        <button class="save-button" id="save-link-button" type="submit" disabled>
+          <span>Add link</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" /></svg>
+        </button>
+      </form>
+
+      <footer class="popup-footer">
+        <button class="footer-link" id="open-dashboard-button" type="button">
+          <span>Open dashboard</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7" /></svg>
+        </button>
+        <span class="footer-hint">Saved on this device</span>
+      </footer>
+    </main>
+    <script type="module" src="popup.js"></script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || (a.contentWindow && a.contentWindow.document);
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML = "window.__CF$cv$params={r:'a4bebff6786388f4',t:'MTc5MjIzNDMwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener) document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState && ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

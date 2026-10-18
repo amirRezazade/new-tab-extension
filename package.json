@@ -1,0 +1,10 @@
+{
+  "name": "novatab-new-tab",
+  "version": "1.9.4",
+  "private": true,
+  "type": "module",
+  "description": "NovaTab is a modular Chrome MV3 bookmarks dashboard with a toolbar popup and locally bundled SortableJS.",
+  "scripts": {
+    "preview": "python3 preview_server.py"
+  }
+}

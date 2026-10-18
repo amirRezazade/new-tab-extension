@@ -1,0 +1,72 @@
+[
+  {
+    "id": "dragon-oath",
+    "name": "Dragon Oath",
+    "src": "assets/wallpapers/11.jpg"
+  },
+  {
+    "id": "crescent-ember",
+    "name": "Crescent Ember",
+    "src": "assets/wallpapers/1.jpg"
+  },
+  {
+    "id": "summit-glow",
+    "name": "Summit Glow",
+    "src": "assets/wallpapers/2.jpg"
+  },
+  {
+    "id": "violet-tempest",
+    "name": "Violet Tempest",
+    "src": "assets/wallpapers/3.jpg"
+  },
+  {
+    "id": "wraith-circle-1",
+    "name": "Wraith Circle",
+    "src": "assets/wallpapers/4.jpg"
+  },
+  {
+    "id": "wraith-circle-2",
+    "name": "Wraith Circle",
+    "src": "assets/wallpapers/5.jpg"
+  },
+  {
+    "id": "mist-valley-1",
+    "name": "Mist Valley",
+    "src": "assets/wallpapers/6.jpg"
+  },
+  {
+    "id": "mist-valley-2",
+    "name": "Mist Valley",
+    "src": "assets/wallpapers/7.jpg"
+  },
+  {
+    "id": "solar-portal",
+    "name": "Solar Portal",
+    "src": "assets/wallpapers/8.jpg"
+  },
+  {
+    "id": "crimson-gate",
+    "name": "Crimson Gate",
+    "src": "assets/wallpapers/9.jpg"
+  },
+  {
+    "id": "poppy-drift",
+    "name": "Poppy Drift",
+    "src": "assets/wallpapers/10.jpg"
+  },
+  {
+    "id": "lonely-road",
+    "name": "Lonely Road",
+    "src": "assets/wallpapers/12.jpg"
+  },
+  {
+    "id": "desert-car",
+    "name": "Desert Car",
+    "src": "assets/wallpapers/13.jpg"
+  },
+  {
+    "id": "laid-streaks",
+    "name": "Laid Streaks",
+    "src": "assets/wallpapers/14.jpg"
+  }
+]

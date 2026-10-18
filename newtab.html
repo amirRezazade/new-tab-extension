@@ -1,129 +1,91 @@
 <!doctype html>
-<html>
+<html lang="en" class="is-booting">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1212" />
     <title>Nova Tab</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
   </head>
   <body>
-    <div class="search-bar">
-      <label for="searchInput" class="search-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img" viewBox="0 0 512 512" width="24" height="24" fill="#000000">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <rect width="512" height="512" rx="15%" fill="transparent"></rect>
-            <path fill="#4285f4" d="M386 400c45-42 65-112 53-179H260v74h102c-4 24-18 44-38 57z"></path>
-            <path fill="#34a853" d="M90 341a192 192 0 0 0 296 59l-62-48c-53 35-141 22-171-60z"></path>
-            <path fill="#fbbc02" d="M153 292c-8-25-8-48 0-73l-63-49c-23 46-30 111 0 171z"></path>
-            <path fill="#ea4335" d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z"></path>
-          </g>
-        </svg>
-      </label>
-      <input type="text" placeholder="Search..." id="searchInput" />
-    </div>
-    <div class="clock-widget" id="clockWidget">
-      <div class="clock-time" id="clockTime">00:00</div>
-      <div class="weather-widget" id="weatherWidget" style="display: none">
-        <img src="" alt="weather icon" id="weatherIcon" width="25px" height="25px" />
-        <span id="weatherTemp"></span>
-        <span id="weatherCity"></span>
+    <div class="app-shell" id="app-shell">
+      <div class="ambient-scene" aria-hidden="true">
+        <div class="scene-haze"></div>
+        <div class="scene-monolith scene-monolith--left"></div>
+        <div class="scene-monolith scene-monolith--right"></div>
+        <div class="scene-portal"></div>
+        <div class="scene-water"></div>
       </div>
-      <div class="clock-date" id="clockDate">Monday, Jan 1</div>
-    </div>
-    <div class="bookmarks-wrapper">
-      <div class="tab-bar">
-        <div class="tabs" id="tabsContainer">
-          <button class="tab active" data-tab="home">
-            Home
-            <span class="tab-arrow">▾</span>
+
+      <header class="top-area">
+        <form class="search-bar" id="search-form" role="search" autocomplete="off">
+          <button class="search-provider" type="submit" aria-label="Search with Google" tabindex="-1">
+            <svg viewBox="0 0 48 48" aria-hidden="true" class="google-mark">
+              <path fill="#4285F4" d="M43.6 24.5c0-1.4-.1-2.7-.4-4H24v7.6h11c-.5 2.5-1.9 4.6-4.1 6v5h6.6c3.9-3.6 6.1-8.8 6.1-14.6z" />
+              <path fill="#34A853" d="M24 44c5.5 0 10.1-1.8 13.5-4.9l-6.6-5c-1.8 1.2-4 2-6.9 2-5.3 0-9.8-3.6-11.4-8.5H5.8v5.2C9.2 39.4 16 44 24 44z" />
+              <path fill="#FBBC05" d="M12.6 27.6a12 12 0 0 1 0-7.2v-5.2H5.8a20 20 0 0 0 0 17.6l6.8-5.2z" />
+              <path fill="#EA4335" d="M24 11.9c3 0 5.7 1 7.8 3.1l5.8-5.8C34.1 5.9 29.5 4 24 4 16 4 9.2 8.6 5.8 15.2l6.8 5.2c1.6-4.9 6.1-8.5 11.4-8.5z" />
+            </svg>
           </button>
-        </div>
-        <button class="add-tab-btn" id="addTabBtn">+</button>
-      </div>
-      <div class="tab-divider"></div>
-      <div class="columns-container" id="columnsContainer">
-        <div class="column" data-col="0"></div>
-        <div class="column" data-col="1"></div>
-        <div class="column" data-col="2"></div>
-        <div class="column" data-col="3"></div>
-      </div>
-    </div>
-    <button class="wallpaper-btn" id="wallpaperBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-        <path d="M21 15l-5-5L5 21"></path>
-      </svg>
-    </button>
-    <div class="wallpaper-panel" id="wallpaperPanel">
-      <!-- تب‌های بالای پنل -->
-      <div class="panel-tabs">
-        <button class="panel-tab active" data-panel="wallpaper">Wallpaper</button>
-        <button class="panel-tab" data-panel="theme">Theme</button>
+          <input id="search-input" name="q" type="search" placeholder="Search…" aria-label="Search the web" spellcheck="false" enterkeyhint="search" />
+          <kbd class="search-hint" aria-hidden="true">↵</kbd>
+        </form>
+
+        <nav class="workspace-nav" aria-label="Link tabs">
+          <div class="tab-list" id="tab-list" role="tablist" aria-label="Link tabs"></div>
+          <button class="tab-add-button" id="add-tab-button" type="button" aria-label="Add tab" title="Add tab">
+            <span aria-hidden="true">+</span>
+          </button>
+        </nav>
+      </header>
+
+      <main class="workspace-main" id="workspace-main">
+        <div class="group-grid" id="group-grid" aria-live="polite"></div>
+      </main>
+
+      <div class="clock-widget" id="clock-widget" aria-label="Current time, weather and date">
+        <time class="clock-time" id="clock-time">--:--</time>
+        <time class="clock-date" id="clock-date">Loading date…</time>
+        <div class="weather-status" id="weather-status" role="status" aria-live="polite" data-state="loading">در حال دریافت آب‌وهوا…</div>
       </div>
 
-      <!-- محتوای Wallpaper (مثل قبل) -->
-      <div class="panel-content" id="panelWallpaper">
-        <div class="wallpaper-grid" id="wallpaperGrid"></div>
-        <button class="upload-wallpaper-btn" id="uploadWallpaperBtn">Upload Wallpaper</button>
-        <input type="file" id="wallpaperFileInput" accept="image/*" style="display: none" />
-      </div>
+      <button class="floating-button floating-button--wallpaper" id="open-wallpaper-button" type="button" aria-label="Change background" aria-expanded="false" aria-controls="appearance-dialog" title="Change background">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="4" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7" />
+          <circle cx="9" cy="9" r="1.7" fill="none" stroke="currentColor" stroke-width="1.7" />
+          <path d="m5 17 4.4-4.4 3.2 3.1 2.1-2.1 4.3 4.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" />
+        </svg>
+      </button>
 
-      <!-- محتوای Theme -->
-      <div class="panel-content" id="panelTheme" style="display: none">
-        <!-- رنگ accent -->
-        <p class="panel-label">Accent Color</p>
-        <div class="color-presets" id="accentPresets"></div>
-
-        <!-- رنگ متن -->
-        <p class="panel-label">Text Color</p>
-        <div class="color-presets" id="textPresets"></div>
-
-        <!-- بلور کارت‌ها -->
-        <p class="panel-label">Card Blur <span id="blurValue">12</span>px</p>
-        <input type="range" id="blurRange" min="0" max="30" value="12" step="1" />
-
-        <!-- شفافیت کارت‌ها -->
-        <p class="panel-label">Card Opacity <span id="opacityValue">12</span>%</p>
-        <input type="range" id="opacityRange" min="0" max="40" value="12" step="1" />
-      </div>
-    </div>
-
-    <div class="fab-container" id="fabContainer">
-      <!-- دکمه‌های منو (از پایین به بالا) -->
-      <div class="fab-menu" id="fabMenu">
-        <div class="fab-item">
-          <button class="fab-btn" id="fabSearch">
+      <div class="floating-action-menu" id="floating-action-menu">
+        <button class="floating-button floating-button--menu" id="floating-menu-toggle" type="button" aria-label="Open quick actions" aria-expanded="false" aria-controls="floating-action-list" title="Quick actions">
+          <svg viewBox="0 0 24 24"><path class="menu-icon-horizontal" d="M6 7h12M6 12h12M6 17h12" /></svg>
+        </button>
+        <div class="floating-action-list" id="floating-action-list" role="group" aria-label="Quick actions">
+          <button class="floating-action-item" id="open-link-search-button" type="button" aria-label="Search your links" title="Search links">
             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
-        </div>
-
-        <div class="fab-item">
-          <button class="fab-btn" id="fabExport">
-            <svg fill="#ffffff" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier"><path d="M8.71,7.71,11,5.41V15a1,1,0,0,0,2,0V5.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42l-4-4a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-4,4A1,1,0,1,0,8.71,7.71ZM21,14a1,1,0,0,0-1,1v4a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V15a1,1,0,0,0-2,0v4a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V15A1,1,0,0,0,21,14Z"></path></g>
-            </svg>
-          </button>
-        </div>
-
-        <div class="fab-item">
-          <button class="fab-btn" id="fabImport">
+          <button class="floating-action-item" id="import-data-button" type="button" aria-label="Import dashboard data" title="Import data">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
           </button>
-        </div>
-
-        <div class="fab-item">
-          <button class="fab-btn" id="fabSettings">
+          <button class="floating-action-item" id="export-data-button" type="button" aria-label="Export dashboard data" title="Export data">
+            <svg fill="#ffffff" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier"><path d="M8.71,7.71,11,5.41V15a1,1,0,0,0,2,0V5.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42l-4-4a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-4,4A1,1,0,1,0,8.71,7.71ZM21,14a1,1,0,0,0-1,1v4a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V15a1,1,0,0,0-2,0v4a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V15A1,1,0,0,0,21,14Z"></path></g>
+            </svg>
+          </button>
+          <button class="floating-action-item" id="open-settings-button" type="button" aria-label="Settings" aria-expanded="false" aria-controls="preferences-dialog" title="Settings">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="24" height="24" fill="currentColor">
               <path
                 d="M47.16,21.221l-5.91-0.966c-0.346-1.186-0.819-2.326-1.411-3.405l3.45-4.917c0.279-0.397,0.231-0.938-0.112-1.282 l-3.889-3.887c-0.347-0.346-0.893-0.391-1.291-0.104l-4.843,3.481c-1.089-0.602-2.239-1.08-3.432-1.427l-1.031-5.886 C28.607,2.35,28.192,2,27.706,2h-5.5c-0.49,0-0.908,0.355-0.987,0.839l-0.956,5.854c-1.2,0.345-2.352,0.818-3.437,1.412l-4.83-3.45 c-0.399-0.285-0.942-0.239-1.289,0.106L6.82,10.648c-0.343,0.343-0.391,0.883-0.112,1.28l3.399,4.863 c-0.605,1.095-1.087,2.254-1.438,3.46l-5.831,0.971c-0.482,0.08-0.836,0.498-0.836,0.986v5.5c0,0.485,0.348,0.9,0.825,0.985 l5.831,1.034c0.349,1.203,0.831,2.362,1.438,3.46l-3.441,4.813c-0.284,0.397-0.239,0.942,0.106,1.289l3.888,3.891 c0.343,0.343,0.884,0.391,1.281,0.112l4.87-3.411c1.093,0.601,2.248,1.078,3.445,1.424l0.976,5.861C21.3,47.647,21.717,48,22.206,48 h5.5c0.485,0,0.9-0.348,0.984-0.825l1.045-5.89c1.199-0.353,2.348-0.833,3.43-1.435l4.905,3.441 c0.398,0.281,0.938,0.232,1.282-0.111l3.888-3.891c0.346-0.347,0.391-0.894,0.104-1.292l-3.498-4.857 c0.593-1.08,1.064-2.222,1.407-3.408l5.918-1.039c0.479-0.084,0.827-0.5,0.827-0.985v-5.5C47.999,21.718,47.644,21.3,47.16,21.221z M25,32c-3.866,0-7-3.134-7-7c0-3.866,3.134-7,7-7s7,3.134,7,7C32,28.866,28.866,32,25,32z"
@@ -131,151 +93,272 @@
             </svg>
           </button>
         </div>
+        <input class="visually-hidden" id="import-data-input" type="file" accept="application/json,.json" tabindex="-1" />
       </div>
 
-      <!-- دکمه اصلی همبرگری -->
-      <button class="fab-main" id="fabMain">
-        <span class="fab-main-icon">☰</span>
-      </button>
-    </div>
+      <dialog class="settings-dialog" id="appearance-dialog" aria-label="Appearance settings">
+        <div class="dialog-panel appearance-panel">
+          <div class="appearance-tabs" role="tablist" aria-label="Appearance settings">
+            <button class="appearance-tab" id="appearance-tab-wallpaper" type="button" role="tab" data-appearance-tab="wallpaper" aria-controls="wallpaper-panel" aria-selected="true">Wallpaper</button>
+            <button class="appearance-tab" id="appearance-tab-theme" type="button" role="tab" data-appearance-tab="theme" aria-controls="theme-panel" aria-selected="false" tabindex="-1">Theme</button>
+          </div>
 
-    <div class="modal-overlay" id="searchOverlay">
-      <div class="modal search-modal">
-        <div class="search-input-wrapper">
-          <span
-            ><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="7"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg
-          ></span>
-          <input type="text" id="searchLinksInput" placeholder="Search links..." />
+          <section class="appearance-body" id="wallpaper-panel" role="tabpanel" aria-labelledby="appearance-tab-wallpaper" data-appearance-panel="wallpaper">
+            <div class="wallpaper-gallery" id="wallpaper-gallery" aria-label="Choose a wallpaper"></div>
+            <label class="upload-button upload-button--wide" for="wallpaper-file-input">
+              Upload Wallpaper
+              <input id="wallpaper-file-input" type="file" accept="image/png,image/jpeg,image/webp,image/avif" />
+            </label>
+          </section>
+
+          <section class="appearance-body appearance-body--theme" id="theme-panel" role="tabpanel" aria-labelledby="appearance-tab-theme" data-appearance-panel="theme" hidden>
+            <div class="palette-section">
+              <h3 class="palette-heading">Accent color</h3>
+              <div class="color-swatches color-swatches--accent" id="accent-color-swatches" role="group" aria-label="Choose accent color"></div>
+            </div>
+
+            <div class="palette-section">
+              <h3 class="palette-heading">Text color</h3>
+              <div class="color-swatches color-swatches--text" id="text-color-swatches" role="group" aria-label="Choose text color"></div>
+            </div>
+
+            <label class="range-control" for="group-blur-input">
+              <span class="range-control__heading"><span>Card blur</span><output id="group-blur-value" for="group-blur-input">0px</output></span>
+              <input id="group-blur-input" type="range" min="0" max="28" step="1" value="0" />
+            </label>
+
+            <label class="range-control" for="card-opacity-input">
+              <span class="range-control__heading"><span>Card opacity</span><output id="card-opacity-value" for="card-opacity-input">0%</output></span>
+              <input id="card-opacity-input" type="range" min="0" max="100" step="1" value="0" />
+            </label>
+          </section>
         </div>
-        <div class="search-results" id="searchResults"></div>
-      </div>
-    </div>
-    <div class="modal-overlay" id="settingsOverlay">
-      <div class="modal settings-modal">
-        <h3>Settings</h3>
+      </dialog>
 
-        <div class="settings-group">
-          <label class="settings-row">
-            <span>Show Clock & Date & Weather</span>
-            <input type="checkbox" id="settingClock" />
-          </label>
+      <dialog class="preferences-dialog" id="preferences-dialog" aria-labelledby="preferences-title">
+        <div class="preferences-panel">
+          <h2 class="preferences-title" id="preferences-title">Settings</h2>
 
-          <label class="settings-row">
-            <span>Show Search Bar</span>
-            <input type="checkbox" id="settingSearch" />
-          </label>
+          <div class="preferences-options">
+            <div class="preferences-row">
+              <span class="preferences-label" id="show-clock-label">Show Clock &amp; Date &amp; Weather</span>
+              <button class="setting-switch" type="button" role="switch" data-setting-toggle="showClockAndWeather" aria-labelledby="show-clock-label" aria-checked="true">
+                <span class="setting-switch__thumb" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="preferences-row">
+              <span class="preferences-label" id="show-search-label">Show Search Bar</span>
+              <button class="setting-switch" type="button" role="switch" data-setting-toggle="showSearch" aria-labelledby="show-search-label" aria-checked="true">
+                <span class="setting-switch__thumb" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="preferences-row preferences-row--highlight">
+              <span class="preferences-label" id="open-links-label">Open links in new tab</span>
+              <button class="setting-switch" type="button" role="switch" data-setting-toggle="openLinksInNewTab" aria-labelledby="open-links-label" aria-checked="true">
+                <span class="setting-switch__thumb" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
 
-          <label class="settings-row">
-            <span>Open links in new tab</span>
-            <input type="checkbox" id="settingNewTab" />
-          </label>
+          <div class="preferences-divider" role="separator"></div>
+
+          <form class="preferences-city-row" id="weather-city-form" autocomplete="off">
+            <label class="preferences-label" for="weather-city-input">City (for weather)</label>
+            <div class="city-picker" id="weather-city-picker">
+              <input id="weather-city-input" name="weatherCity" type="text" maxlength="80" value="تبریز" dir="auto" spellcheck="false" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="weather-city-suggestions" aria-label="City for weather" />
+              <div class="city-suggestions" id="weather-city-suggestions" role="listbox" aria-label="City suggestions" hidden></div>
+            </div>
+          </form>
+
+          <div class="preferences-divider preferences-divider--city" role="separator"></div>
+
+          <div class="preferences-data-actions">
+            <button class="preferences-data-button" id="settings-export-button" type="button">
+              <span>Export Data</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7.5 7.5M12 3l4.5 4.5M4 14.5v5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5v-5" /></svg>
+            </button>
+            <button class="preferences-data-button" id="settings-import-button" type="button">
+              <span>Import Data</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 14.5v5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5v-5" /></svg>
+            </button>
+          </div>
+          <input class="visually-hidden" id="settings-import-input" type="file" accept="application/json,.json" tabindex="-1" />
+
+          <div class="preferences-footer">
+            <button class="preferences-close-button" id="close-preferences-button" type="button">Close</button>
+          </div>
         </div>
+      </dialog>
 
-        <div class="settings-group city-settings-group">
-          <label class="settings-row">
-            <span>City (for weather)</span>
-            <input type="text" id="settingCity" dir="rtl" placeholder="مثلاً تهران" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 6px 10px; color: white; outline: none; width: 120px; font-size: 13px" />
-          </label>
-          <div id="citySuggestions" style="display: none"></div>
-        </div>
-        <div class="settings-group">
-          <button class="settings-btn" id="settingExport">
-            <span> Export Data </span>
-            <svg fill="#ffffff" width="19" height="19" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier"><path d="M8.71,7.71,11,5.41V15a1,1,0,0,0,2,0V5.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42l-4-4a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-4,4A1,1,0,1,0,8.71,7.71ZM21,14a1,1,0,0,0-1,1v4a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V15a1,1,0,0,0-2,0v4a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V15A1,1,0,0,0,21,14Z"></path></g>
+      <dialog class="action-dialog link-search-dialog" id="link-search-dialog" aria-labelledby="link-search-title">
+        <div class="dialog-panel link-search-panel">
+          <header class="link-search-header">
+            <h2 id="link-search-title">Search links</h2>
+            <button class="icon-button" type="button" data-close-link-search aria-label="Close link search">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <form class="link-search-form" id="link-search-form" role="search" autocomplete="off">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.4" />
+              <path d="m15.5 15.5 5 5" />
             </svg>
-          </button>
-          <button class="settings-btn" id="settingImport">
-            <span> Import Data </span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-          </button>
-          <input type="file" id="settingImportFile" accept=".json" style="display: none" />
+            <input id="link-search-input" type="search" placeholder="Search by link, URL, tab or group…" aria-label="Search dashboard links" aria-controls="link-search-results" spellcheck="false" />
+          </form>
+          <div class="link-search-results" id="link-search-results" role="list" aria-label="Matching links"></div>
+          <p class="link-search-empty" id="link-search-empty" role="status" aria-live="polite">Type to search your links.</p>
         </div>
+      </dialog>
 
-        <div class="modal-actions">
-          <button type="button" id="settingsCloseBtn">Close</button>
+      <dialog class="action-dialog" id="tab-name-dialog" aria-labelledby="tab-name-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="tab-name-dialog-title">Add a tab</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-tab-name aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <form class="tab-name-form" id="tab-name-form" novalidate>
+            <label class="form-field-label" for="tab-name-input">Tab name</label>
+            <input class="tab-name-input" id="tab-name-input" name="tabName" type="text" maxlength="32" placeholder="e.g. Research" autocomplete="off" aria-describedby="tab-name-error" required />
+            <p class="field-error" id="tab-name-error" role="status" aria-live="polite"></p>
+            <footer class="dialog-footer">
+              <button class="text-button" type="button" data-close-tab-name>Cancel</button>
+              <button class="primary-button" id="tab-name-submit" type="submit">Add tab</button>
+            </footer>
+          </form>
         </div>
-      </div>
-    </div>
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal">
-        <h3 id="modalTitle">Add Group</h3>
-        <form id="modalForm">
-          <div id="tabNameField">
-            <label>
-              Tab name
-              <input type="text" id="tabNameInput" placeholder="e.g. Work" />
-            </label>
-          </div>
+      </dialog>
 
-          <div id="groupNameField">
-            <label>
-              Group name
-              <input type="text" id="groupNameInput" placeholder="e.g. Work" />
-            </label>
-          </div>
+      <dialog class="action-dialog" id="group-name-dialog" aria-labelledby="group-name-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="group-name-dialog-title">Add a group</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-group-dialog aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <form class="tab-name-form" id="group-name-form" novalidate>
+            <label class="form-field-label" for="group-name-input">Group name</label>
+            <input class="tab-name-input" id="group-name-input" name="groupName" type="text" maxlength="32" placeholder="e.g. Design resources" autocomplete="off" aria-describedby="group-name-error" required />
+            <div class="optional-link-fields" id="group-initial-link-fields">
+              <p class="optional-fields-title">Add a first link <span>(optional)</span></p>
+              <label class="form-field-label" for="group-link-title-input">Link title</label>
+              <input class="tab-name-input" id="group-link-title-input" name="initialLinkTitle" type="text" maxlength="80" placeholder="e.g. Design inspiration" autocomplete="off" aria-describedby="group-name-error" />
+              <label class="form-field-label" for="group-link-url-input">Link URL</label>
+              <input class="tab-name-input" id="group-link-url-input" name="initialLinkUrl" type="text" inputmode="url" maxlength="2048" placeholder="https://example.com" autocomplete="url" aria-describedby="group-name-error" />
+            </div>
+            <p class="field-error" id="group-name-error" role="status" aria-live="polite"></p>
+            <footer class="dialog-footer">
+              <button class="text-button" type="button" data-close-group-dialog>Cancel</button>
+              <button class="primary-button" id="group-name-submit" type="submit">Add group</button>
+            </footer>
+          </form>
+        </div>
+      </dialog>
 
-          <div id="linkFields">
-            <label>
-              Link name
-              <input type="text" id="linkNameInput" placeholder="e.g. Notion" />
-            </label>
-            <label>
-              URL
-              <input type="text" id="linkUrlInput" placeholder="e.g. notion.so" />
-            </label>
-          </div>
+      <dialog class="action-dialog" id="link-dialog" aria-labelledby="link-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="link-dialog-title">Add a link</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-link-dialog aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <form class="tab-name-form" id="link-form" novalidate>
+            <label class="form-field-label" for="link-title-input">Link title</label>
+            <input class="tab-name-input" id="link-title-input" name="linkTitle" type="text" maxlength="80" placeholder="e.g. Design inspiration" autocomplete="off" aria-describedby="link-error" required />
+            <label class="form-field-label link-url-label" for="link-url-input">Link URL</label>
+            <input class="tab-name-input" id="link-url-input" name="linkUrl" type="text" inputmode="url" maxlength="2048" placeholder="https://example.com" autocomplete="url" aria-describedby="link-error" required />
+            <p class="field-error" id="link-error" role="status" aria-live="polite"></p>
+            <footer class="dialog-footer">
+              <button class="text-button" type="button" data-close-link-dialog>Cancel</button>
+              <button class="primary-button" id="link-submit" type="submit">Add link</button>
+            </footer>
+          </form>
+        </div>
+      </dialog>
 
-          <div class="modal-actions">
-            <button type="button" id="modalCancelBtn">Cancel</button>
-            <button type="submit">Save</button>
+      <dialog class="action-dialog action-dialog--delete" id="delete-link-dialog" aria-labelledby="delete-link-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="delete-link-dialog-title">Delete this link?</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-delete-link aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <div class="delete-tab-summary-card">
+            <span class="delete-tab-symbol" aria-hidden="true">!</span>
+            <div class="delete-tab-copy">
+              <strong id="delete-link-name"></strong>
+              <span id="delete-link-summary"></span>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <div class="modal-overlay" id="editLinkOverlay">
-      <div class="modal">
-        <h3>Edit Link</h3>
-        <form id="editLinkForm">
-          <label>
-            Name
-            <input type="text" id="editLinkName" />
-          </label>
-          <label>
-            URL
-            <input type="text" id="editLinkUrl" />
-          </label>
-          <div class="modal-actions">
-            <button type="button" id="editLinkCancelBtn">Cancel</button>
-            <button type="submit">Save</button>
+          <footer class="dialog-footer">
+            <button class="text-button" type="button" data-close-delete-link>Cancel</button>
+            <button class="danger-button" id="delete-link-confirm" type="button">Delete link</button>
+          </footer>
+        </div>
+      </dialog>
+
+      <dialog class="action-dialog action-dialog--delete" id="delete-group-dialog" aria-labelledby="delete-group-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="delete-group-dialog-title">Delete this group?</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-delete-group aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <div class="delete-tab-summary-card">
+            <span class="delete-tab-symbol" aria-hidden="true">!</span>
+            <div class="delete-tab-copy">
+              <strong id="delete-group-name"></strong>
+              <span id="delete-group-summary"></span>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <div class="modal-overlay" id="confirmModalOverlay">
-      <div class="modal">
-        <h3 id="confirmModalTitle">Title</h3>
-        <p id="confirmModalMessage"></p>
-        <form id="confirmModalForm">
-          <label id="confirmModalInputWrapper">
-            <input type="text" id="confirmModalInput" />
-          </label>
-          <div class="modal-actions">
-            <button type="button" id="confirmModalCancelBtn">Cancel</button>
-            <button type="submit" id="confirmModalSubmitBtn">Save</button>
+          <footer class="dialog-footer">
+            <button class="text-button" type="button" data-close-delete-group>Cancel</button>
+            <button class="danger-button" id="delete-group-confirm" type="button">Delete group</button>
+          </footer>
+        </div>
+      </dialog>
+
+      <dialog class="action-dialog action-dialog--delete" id="delete-tab-dialog" aria-labelledby="delete-tab-dialog-title">
+        <div class="dialog-panel">
+          <header class="dialog-header">
+            <div>
+              <h2 id="delete-tab-dialog-title">Delete this tab?</h2>
+            </div>
+            <button class="icon-button dialog-close" type="button" data-close-delete-tab aria-label="Close dialog">
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+          <div class="delete-tab-summary-card">
+            <span class="delete-tab-symbol" aria-hidden="true">!</span>
+            <div class="delete-tab-copy">
+              <strong id="delete-tab-name"></strong>
+              <span id="delete-tab-summary"></span>
+            </div>
           </div>
-        </form>
-      </div>
+          <footer class="dialog-footer">
+            <button class="text-button" type="button" data-close-delete-tab>Cancel</button>
+            <button class="danger-button" id="delete-tab-confirm" type="button">Delete tab</button>
+          </footer>
+        </div>
+      </dialog>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
     </div>
-    <script src="libs/Sortable.min.js"></script>
-    <script src="script.js" type="module"></script>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>

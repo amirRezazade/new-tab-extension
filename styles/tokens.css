@@ -1,0 +1,145 @@
+/* Design tokens: themes are applied by setting data-theme on <html>. */
+:root {
+  color-scheme: dark;
+  --page-bg: #0c1212;
+  --page-text: var(--user-text-color, #f5f5f6);
+  --text-muted: #bec2c5;
+  --text-subtle: #8c9497;
+  --accent: var(--user-primary-color, #ed1835);
+  --accent-strong: color-mix(in srgb, var(--accent) 82%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --surface: rgba(24, 31, 32, 0.66);
+  --group-surface: #181f20;
+  --surface-strong: rgba(25, 32, 33, 0.9);
+  --surface-hover: rgba(255, 255, 255, 0.075);
+  --line: rgba(255, 255, 255, 0.17);
+  --line-soft: rgba(255, 255, 255, 0.1);
+  --focus-ring: rgba(255, 255, 255, 0.68);
+  --scene-glow: rgba(255, 74, 54, 0.56);
+  --scene-secondary-glow: rgba(203, 67, 51, 0.22);
+  --modal-shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --user-background-color: #101817;
+  --wallpaper-image: none;
+  --group-blur: 0px;
+  --group-opacity: 0%;
+  font-family: "Peyda", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="ember"] {
+  color-scheme: dark;
+  --page-bg: #0c1212;
+  --page-text: var(--user-text-color, #f5f5f6);
+  --text-muted: #bec2c5;
+  --text-subtle: #8c9497;
+  --accent: var(--user-primary-color, #ed1835);
+  --accent-strong: color-mix(in srgb, var(--accent) 82%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --surface: rgba(24, 31, 32, 0.66);
+  --group-surface: #181f20;
+  --surface-strong: rgba(25, 32, 33, 0.9);
+  --surface-hover: rgba(255, 255, 255, 0.075);
+  --line: rgba(255, 255, 255, 0.17);
+  --line-soft: rgba(255, 255, 255, 0.1);
+  --focus-ring: rgba(255, 255, 255, 0.68);
+  --scene-glow: rgba(255, 74, 54, 0.56);
+  --scene-secondary-glow: rgba(203, 67, 51, 0.22);
+}
+
+:root[data-theme="midnight"] {
+  color-scheme: dark;
+  --page-bg: #0b1020;
+  --page-text: var(--user-text-color, #f0f2ff);
+  --text-muted: #c0c5d8;
+  --text-subtle: #929ab5;
+  --accent: var(--user-primary-color, #7887ff);
+  --accent-strong: color-mix(in srgb, var(--accent) 82%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --surface: rgba(22, 28, 49, 0.7);
+  --group-surface: #161c31;
+  --surface-strong: rgba(20, 25, 43, 0.94);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --line: rgba(223, 228, 255, 0.2);
+  --line-soft: rgba(223, 228, 255, 0.11);
+  --focus-ring: rgba(203, 210, 255, 0.78);
+  --scene-glow: rgba(93, 107, 244, 0.52);
+  --scene-secondary-glow: rgba(86, 111, 220, 0.23);
+}
+
+:root[data-theme="daylight"] {
+  color-scheme: light;
+  --page-bg: #d9dedb;
+  --page-text: var(--user-text-color, #17201f);
+  --text-muted: #34413f;
+  --text-subtle: #65706f;
+  --accent: var(--user-primary-color, #e04743);
+  --accent-strong: color-mix(in srgb, var(--accent) 82%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --surface: rgba(247, 249, 248, 0.72);
+  --group-surface: #f7f9f8;
+  --surface-strong: rgba(250, 251, 251, 0.96);
+  --surface-hover: rgba(25, 35, 34, 0.07);
+  --line: rgba(20, 32, 30, 0.2);
+  --line-soft: rgba(20, 32, 30, 0.12);
+  --focus-ring: rgba(38, 54, 51, 0.58);
+  --scene-glow: rgba(255, 133, 104, 0.48);
+  --scene-secondary-glow: rgba(116, 158, 153, 0.25);
+  --modal-shadow: 0 28px 90px rgba(22, 35, 32, 0.24);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--page-bg);
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--page-bg);
+  color: var(--page-text);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scrollbar-width: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fff;
+  background: var(--accent);
+}
