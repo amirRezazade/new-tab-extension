@@ -2,7 +2,7 @@
 
 > یه صفحه تب جدید سفارشی برای کروم با قابلیت مدیریت لینک‌ها، تب‌ها، گروه‌ها و شخصی‌سازی کامل
 
-![Nova New Tab Preview](./images/demo.jpg)
+![Nova New Tab Preview](./assets/demo.jpg)
 
 ---
 
