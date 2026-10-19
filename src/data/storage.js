@@ -11,6 +11,59 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+const LEGACY_STARTER_TABS = [
+  ["ai", "Ai"],
+  ["work", "Work"],
+  ["job", "job"],
+  ["social", "Social"],
+  ["school", "school"],
+  ["projects", "my projects"],
+];
+
+const LEGACY_STARTER_AI_LINKS = [
+  ["arena-ai", "Arena AI", "https://arena.ai/", "arena"],
+  ["chatgpt", "ChatGPT", "https://chatgpt.com/", "chatgpt"],
+  ["claude", "Claude", "https://claude.ai/", "claude"],
+  ["z-ai", "Z.ai", "https://chat.z.ai/", "zai"],
+  ["kimi", "Kimi", "https://www.kimi.com/", "kimi"],
+  ["genspark", "Genspark", "https://www.genspark.ai/", "genspark"],
+  ["deepseek", "DeepSeek", "https://chat.deepseek.com/", "deepseek"],
+];
+
+function isLegacyStarterDashboard(raw) {
+  if (!raw || raw.schemaVersion !== 2 || raw.activeTabId !== "ai" || !Array.isArray(raw.tabs) || raw.tabs.length !== LEGACY_STARTER_TABS.length) {
+    return false;
+  }
+
+  for (let index = 0; index < LEGACY_STARTER_TABS.length; index += 1) {
+    const tab = raw.tabs[index];
+    const [id, name] = LEGACY_STARTER_TABS[index];
+    if (!tab || tab.id !== id || tab.name !== name || tab.order !== index || !Array.isArray(tab.groups)) return false;
+
+    if (index !== 0) {
+      if (tab.groups.length !== 0) return false;
+      continue;
+    }
+
+    if (tab.groups.length !== 1) return false;
+    const group = tab.groups[0];
+    if (!group || group.id !== "ai-chats" || group.name !== "chats" || group.column !== 0 || group.order !== 0 || !Array.isArray(group.links)) {
+      return false;
+    }
+    if (group.links.length !== LEGACY_STARTER_AI_LINKS.length) return false;
+
+    for (let linkIndex = 0; linkIndex < LEGACY_STARTER_AI_LINKS.length; linkIndex += 1) {
+      const link = group.links[linkIndex];
+      const [linkId, title, url, brand] = LEGACY_STARTER_AI_LINKS[linkIndex];
+      if (!link || link.id !== linkId || link.title !== title || link.url !== url || link.brand !== brand || link.order !== linkIndex) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
 function safeLocalStorageGet(key) {
   try {
     const raw = globalThis.localStorage?.getItem(key);
@@ -51,6 +104,7 @@ function queueWrite(key, value) {
 }
 
 export function normalizeDashboard(raw) {
+  if (isLegacyStarterDashboard(raw)) return clone(DEFAULT_DASHBOARD);
   if (!raw || typeof raw !== "object" || !Array.isArray(raw.tabs)) {
     return clone(DEFAULT_DASHBOARD);
   }
@@ -65,9 +119,7 @@ export function normalizeDashboard(raw) {
             .filter((group) => group && typeof group.id === "string" && typeof group.name === "string")
             .map((group, groupIndex) => ({
               ...group,
-              column: Number.isInteger(group.column) && group.column >= 0 && group.column < 4
-                ? group.column
-                : groupIndex % 4,
+              column: Number.isInteger(group.column) && group.column >= 0 && group.column < 4 ? group.column : groupIndex % 4,
               order: Number.isFinite(group.order) ? group.order : groupIndex,
               links: Array.isArray(group.links)
                 ? group.links
@@ -89,7 +141,7 @@ export function normalizeDashboard(raw) {
 
   return {
     ...raw,
-    schemaVersion: 2,
+    schemaVersion: DEFAULT_DASHBOARD.schemaVersion,
     activeTabId,
     tabs,
   };
@@ -102,31 +154,29 @@ export function normalizeSettings(raw) {
   const safePresetId = typeof raw.wallpaperPreset === "string" && /^[a-z0-9][a-z0-9_-]{0,63}$/i.test(raw.wallpaperPreset);
   const requestedBlur = Number.isFinite(raw.groupBlur) ? Math.round(raw.groupBlur) : DEFAULT_SETTINGS.groupBlur;
   const requestedOpacity = Number.isFinite(raw.cardOpacity) ? Math.round(raw.cardOpacity) : DEFAULT_SETTINGS.cardOpacity;
-  const weatherCity = typeof raw.weatherCity === "string" && raw.weatherCity.trim()
-    ? raw.weatherCity.trim().slice(0, 80)
-    : DEFAULT_SETTINGS.weatherCity;
+  const weatherCity = typeof raw.weatherCity === "string" && raw.weatherCity.trim() ? raw.weatherCity.trim().slice(0, 80) : DEFAULT_SETTINGS.weatherCity;
   const cityKey = weatherCity.toLocaleLowerCase();
   const tabrizAliases = new Set(["تبریز", "tabriz"]);
   const rawLocation = raw.weatherLocation;
   const locationName = typeof rawLocation?.name === "string" ? rawLocation.name.trim().slice(0, 80) : "";
   const locationKey = locationName.toLocaleLowerCase();
   const locationMatchesCity = locationKey === cityKey || (tabrizAliases.has(locationKey) && tabrizAliases.has(cityKey));
-  const validCoordinates = Number.isFinite(rawLocation?.latitude)
-    && rawLocation.latitude >= -90 && rawLocation.latitude <= 90
-    && Number.isFinite(rawLocation?.longitude)
-    && rawLocation.longitude >= -180 && rawLocation.longitude <= 180;
-  const weatherLocation = validCoordinates && locationName && locationMatchesCity
-    ? {
-        id: typeof rawLocation.id === "number" || typeof rawLocation.id === "string" ? rawLocation.id : null,
-        name: locationName,
-        admin1: typeof rawLocation.admin1 === "string" ? rawLocation.admin1.slice(0, 100) : "",
-        country: typeof rawLocation.country === "string" ? rawLocation.country.slice(0, 100) : "",
-        countryCode: typeof rawLocation.countryCode === "string" ? rawLocation.countryCode.slice(0, 8) : "",
-        latitude: rawLocation.latitude,
-        longitude: rawLocation.longitude,
-        timezone: typeof rawLocation.timezone === "string" ? rawLocation.timezone.slice(0, 80) : "",
-      }
-    : (tabrizAliases.has(cityKey) ? { ...DEFAULT_WEATHER_LOCATION } : null);
+  const validCoordinates = Number.isFinite(rawLocation?.latitude) && rawLocation.latitude >= -90 && rawLocation.latitude <= 90 && Number.isFinite(rawLocation?.longitude) && rawLocation.longitude >= -180 && rawLocation.longitude <= 180;
+  const weatherLocation =
+    validCoordinates && locationName && locationMatchesCity
+      ? {
+          id: typeof rawLocation.id === "number" || typeof rawLocation.id === "string" ? rawLocation.id : null,
+          name: locationName,
+          admin1: typeof rawLocation.admin1 === "string" ? rawLocation.admin1.slice(0, 100) : "",
+          country: typeof rawLocation.country === "string" ? rawLocation.country.slice(0, 100) : "",
+          countryCode: typeof rawLocation.countryCode === "string" ? rawLocation.countryCode.slice(0, 8) : "",
+          latitude: rawLocation.latitude,
+          longitude: rawLocation.longitude,
+          timezone: typeof rawLocation.timezone === "string" ? rawLocation.timezone.slice(0, 80) : "",
+        }
+      : tabrizAliases.has(cityKey)
+        ? { ...DEFAULT_WEATHER_LOCATION }
+        : null;
 
   return {
     ...DEFAULT_SETTINGS,
@@ -137,9 +187,7 @@ export function normalizeSettings(raw) {
     weatherCity,
     weatherLocation,
     theme: ["ember", "midnight", "daylight"].includes(raw.theme) ? raw.theme : DEFAULT_SETTINGS.theme,
-    backgroundMode: ["scene", "solid", "image"].includes(raw.backgroundMode)
-      ? raw.backgroundMode
-      : DEFAULT_SETTINGS.backgroundMode,
+    backgroundMode: ["scene", "solid", "image"].includes(raw.backgroundMode) ? raw.backgroundMode : DEFAULT_SETTINGS.backgroundMode,
     backgroundColor: validColor(raw.backgroundColor) ? raw.backgroundColor : DEFAULT_SETTINGS.backgroundColor,
     wallpaperPreset: safePresetId ? raw.wallpaperPreset : null,
     primaryColor: validColor(raw.primaryColor) ? raw.primaryColor : null,

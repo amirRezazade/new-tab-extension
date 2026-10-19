@@ -4,38 +4,33 @@ export const STORAGE_KEYS = Object.freeze({
 });
 
 const makeLink = (id, title, url, brand, order) => ({ id, title, url, brand, order });
+const makeGroup = (id, name, column, order, links) => ({ id, name, column, order, links });
 
 export const DEFAULT_DASHBOARD = Object.freeze({
-  schemaVersion: 2,
+  schemaVersion: 3,
   activeTabId: "ai",
   tabs: [
     {
       id: "ai",
-      name: "Ai",
+      name: "AI",
       order: 0,
+      groups: [makeGroup("ai-assistants", "AI assistants", 0, 0, [makeLink("arena-ai", "Arena AI", "https://arena.ai/", "arena", 0), makeLink("chatgpt", "ChatGPT", "https://chatgpt.com/", "chatgpt", 1), makeLink("claude", "Claude", "https://claude.ai/", "claude", 2), makeLink("gemini", "Gemini", "https://gemini.google.com/app", null, 3)])],
+    },
+    {
+      id: "work",
+      name: "Work",
+      order: 1,
       groups: [
-        {
-          id: "ai-chats",
-          name: "chats",
-          order: 0,
-          column: 0,
-          links: [
-            makeLink("arena-ai", "Arena AI", "https://arena.ai/", "arena", 0),
-            makeLink("chatgpt", "ChatGPT", "https://chatgpt.com/", "chatgpt", 1),
-            makeLink("claude", "Claude", "https://claude.ai/", "claude", 2),
-            makeLink("z-ai", "Z.ai", "https://chat.z.ai/", "zai", 3),
-            makeLink("kimi", "Kimi", "https://www.kimi.com/", "kimi", 4),
-            makeLink("genspark", "Genspark", "https://www.genspark.ai/", "genspark", 5),
-            makeLink("deepseek", "DeepSeek", "https://chat.deepseek.com/", "deepseek", 6),
-          ],
-        },
+        makeGroup("work-development", "Development", 0, 0, [makeLink("github", "GitHub", "https://github.com/", null, 0), makeLink("mdn", "MDN Web Docs", "https://developer.mozilla.org/", null, 1), makeLink("stackoverflow", "Stack Overflow", "https://stackoverflow.com/", null, 2)]),
+        makeGroup("work-design", "Design & UI", 1, 0, [makeLink("figma", "Figma", "https://www.figma.com/", null, 0), makeLink("react-bits", "React Bits", "https://reactbits.dev/", null, 1), makeLink("uiverse", "Uiverse", "https://uiverse.io/", null, 2), makeLink("lucide", "Lucide Icons", "https://lucide.dev/", null, 3)]),
       ],
     },
-    { id: "work", name: "Work", order: 1, groups: [] },
-    { id: "job", name: "job", order: 2, groups: [] },
-    { id: "social", name: "Social", order: 3, groups: [] },
-    { id: "school", name: "school", order: 4, groups: [] },
-    { id: "projects", name: "my projects", order: 5, groups: [] },
+    {
+      id: "social",
+      name: "Social",
+      order: 3,
+      groups: [makeGroup("social-messaging", "Messaging & email", 0, 0, [makeLink("gmail", "Gmail", "https://mail.google.com/", null, 0), makeLink("telegram-web", "Telegram Web", "https://web.telegram.org/", null, 1), makeLink("whatsapp-web", "WhatsApp Web", "https://web.whatsapp.com/", null, 2)])],
+    },
   ],
 });
 
