@@ -74,10 +74,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition:
-    opacity 140ms ease,
-    visibility 140ms ease,
-    transform 140ms ease;
+  transition: opacity 140ms ease, visibility 140ms ease, transform 140ms ease;
   cursor: pointer;
 }
 
@@ -107,12 +104,7 @@
   background: rgba(25, 31, 32, 0.24);
   color: var(--page-text);
   backdrop-filter: blur(13px);
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease,
-    padding 160ms ease,
-    transform 160ms ease;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, padding 160ms ease, transform 160ms ease;
 }
 .tab-add-button {
   width: 34px;
@@ -177,9 +169,7 @@
   font-weight: 520;
   text-align: left;
   cursor: pointer;
-  transition:
-    background-color 120ms ease,
-    color 120ms ease;
+  transition: background-color 120ms ease, color 120ms ease;
 }
 
 .tab-menu-item:hover,
@@ -218,9 +208,7 @@
 }
 
 .tab-sortable-chosen .tab-button {
-  box-shadow:
-    0 0 0 3px var(--accent-soft),
-    0 8px 22px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 0 3px var(--accent-soft), 0 8px 22px rgba(0, 0, 0, 0.22);
 }
 
 .tab-sortable-drag .tab-button {
@@ -259,10 +247,7 @@ html.is-reordering-tabs .tab-button {
   padding: 0;
   border: 1px solid transparent;
   border-radius: 18px;
-  transition:
-    border-color 150ms ease,
-    background-color 150ms ease,
-    box-shadow 150ms ease;
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
 }
 
 .group-column__list::after {
@@ -288,9 +273,7 @@ html.is-reordering-tabs .tab-button {
   border: 1px solid var(--line);
   border-radius: 18px;
   background: color-mix(in srgb, var(--group-surface, #181f20) var(--group-opacity, 66%), transparent);
-  box-shadow:
-    0 13px 35px rgba(0, 0, 0, 0.08),
-    inset 0 1px rgba(255, 255, 255, 0.035);
+  box-shadow: 0 13px 35px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(var(--group-blur, 0px));
   -webkit-backdrop-filter: blur(var(--group-blur, 0px));
   animation: card-arrive 320ms ease both;
@@ -361,10 +344,7 @@ html.is-reordering-tabs .tab-button {
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease,
-    color 140ms ease;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
 }
 
 .group-action-button:hover,
@@ -392,14 +372,10 @@ html.is-reordering-tabs .tab-button {
   min-width: 0;
   min-height: 34px;
   flex-direction: column;
-  gap: 2px;
   padding: 1px;
   border: 1px solid transparent;
   border-radius: 13px;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease,
-    box-shadow 140ms ease;
+  transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
 }
 
 .group-card.is-link-drag-over .link-list {
@@ -410,18 +386,13 @@ html.is-reordering-tabs .tab-button {
 .link-item {
   display: flex;
   min-width: 0;
-  min-height: 34px;
   align-items: center;
   gap: 3px;
-  padding: 3px 0px;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   border-radius: 10px;
   color: var(--page-text);
   cursor: grab;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    transform 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
 }
 
 .link-item:active {
@@ -431,6 +402,7 @@ html.is-reordering-tabs .tab-button {
 .link-main {
   display: flex;
   min-width: 0;
+  min-height: 33px;
   flex: 1 1 auto;
   align-items: center;
   gap: 9px;
@@ -467,11 +439,7 @@ html.is-reordering-tabs .tab-button {
   pointer-events: none;
   visibility: hidden;
   cursor: pointer;
-  transition:
-    opacity 130ms ease,
-    visibility 130ms ease,
-    background-color 130ms ease,
-    color 130ms ease;
+  transition: opacity 130ms ease, visibility 130ms ease, background-color 130ms ease, color 130ms ease;
 }
 
 .link-menu-trigger svg {
@@ -589,10 +557,7 @@ html.is-reordering-tabs .tab-button {
   font-size: 11px;
   font-weight: 620;
   cursor: pointer;
-  transition:
-    border-color 150ms ease,
-    background-color 150ms ease,
-    color 150ms ease;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
 }
 
 .empty-links::before {
@@ -615,7 +580,7 @@ html.is-reordering-tabs .tab-button {
 }
 
 .link-sortable-ghost {
-  border-style: dashed;
+  border: 1px dashed;
   box-shadow: none;
   opacity: 0.3;
 }
@@ -683,12 +648,7 @@ html.is-reordering-groups .group-card {
   pointer-events: none;
   transform: translateY(4px);
   backdrop-filter: blur(var(--group-blur));
-  transition:
-    opacity 150ms ease,
-    transform 150ms ease,
-    color 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
+  transition: opacity 150ms ease, transform 150ms ease, color 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
 .group-column:hover .add-group-tile,
@@ -822,14 +782,12 @@ html.is-reordering-groups .group-card {
   border-radius: 999px;
   background: #474747;
   cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .setting-switch[aria-checked="true"] {
-  border-color: #ed1835;
-  background: #ed1835;
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 .setting-switch__thumb {
@@ -874,9 +832,7 @@ html.is-reordering-groups .group-card {
   color: #f4f4f4;
   font-size: 12px;
   text-align: right;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease;
+  transition: border-color 140ms ease, background-color 140ms ease;
 }
 
 .preferences-city-row input:focus {
@@ -991,10 +947,7 @@ html.is-reordering-groups .group-card {
   cursor: pointer;
   font-size: 12px;
   font-weight: 560;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease,
-    transform 140ms ease;
+  transition: border-color 140ms ease, background-color 140ms ease, transform 140ms ease;
 }
 
 .preferences-data-button:hover {
@@ -1035,9 +988,7 @@ html.is-reordering-groups .group-card {
   cursor: pointer;
   font-size: 12px;
   font-weight: 560;
-  transition:
-    background-color 140ms ease,
-    transform 140ms ease;
+  transition: background-color 140ms ease, transform 140ms ease;
 }
 
 .preferences-close-button:hover {
@@ -1108,10 +1059,7 @@ html.is-reordering-groups .group-card {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.045);
-  transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease,
-    background-color 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
 .link-search-form:focus-within {
@@ -1174,10 +1122,7 @@ html.is-reordering-groups .group-card {
   border-radius: 12px;
   color: var(--page-text);
   text-decoration: none;
-  transition:
-    border-color 130ms ease,
-    background-color 130ms ease,
-    transform 130ms ease;
+  transition: border-color 130ms ease, background-color 130ms ease, transform 130ms ease;
 }
 
 .link-search-result:hover,
@@ -1280,10 +1225,7 @@ html.is-reordering-groups .group-card {
   background: rgba(255, 255, 255, 0.045);
   color: var(--page-text);
   font-size: 13px;
-  transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease,
-    background-color 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
 .tab-name-input::placeholder {
@@ -1401,9 +1343,7 @@ html.is-reordering-groups .group-card {
   font-size: 11px;
   font-weight: 650;
   cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    transform 150ms ease;
+  transition: background-color 150ms ease, transform 150ms ease;
 }
 
 .danger-button:hover {
@@ -1461,10 +1401,7 @@ html.is-reordering-groups .group-card {
   font-size: 12px;
   font-weight: 650;
   cursor: pointer;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease,
-    color 140ms ease;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
 }
 
 .appearance-tab:hover {
@@ -1521,10 +1458,7 @@ html.is-reordering-groups .group-card {
   color: #f5f5f5;
   text-align: left;
   cursor: pointer;
-  transition:
-    border-color 140ms ease,
-    transform 140ms ease,
-    box-shadow 140ms ease;
+  transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
 }
 
 .wallpaper-card:hover {
@@ -1615,10 +1549,7 @@ html.is-reordering-groups .group-card {
   border-radius: 50%;
   background: var(--swatch-color);
   cursor: pointer;
-  transition:
-    border-color 130ms ease,
-    transform 130ms ease,
-    box-shadow 130ms ease;
+  transition: border-color 130ms ease, transform 130ms ease, box-shadow 130ms ease;
 }
 
 .color-swatch:hover {
@@ -1696,21 +1627,12 @@ html.is-reordering-groups .group-card {
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .icon-button:hover {
   background: var(--surface-hover);
   color: var(--page-text);
-}
-
-.dialog-close span {
-  margin-top: -2px;
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1;
 }
 
 .upload-button {
@@ -1727,9 +1649,7 @@ html.is-reordering-groups .group-card {
   font-size: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    border-color 150ms ease,
-    background-color 150ms ease;
+  transition: border-color 150ms ease, background-color 150ms ease;
 }
 
 .upload-button:hover {
@@ -1761,10 +1681,7 @@ html.is-reordering-groups .group-card {
   font-size: 11px;
   font-weight: 630;
   cursor: pointer;
-  transition:
-    opacity 150ms ease,
-    transform 150ms ease,
-    background-color 150ms ease;
+  transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease;
 }
 
 .text-button {
@@ -1806,9 +1723,7 @@ html.is-reordering-groups .group-card {
   opacity: 0;
   pointer-events: none;
   transform: translate(50%, 8px);
-  transition:
-    opacity 170ms ease,
-    transform 170ms ease;
+  transition: opacity 170ms ease, transform 170ms ease;
   backdrop-filter: blur(18px);
 }
 

@@ -19,9 +19,7 @@ html.is-booting .ambient-scene {
   inset: 0;
   overflow: hidden;
   background: radial-gradient(ellipse 36% 34% at 50% 59%, var(--scene-glow) 0%, var(--scene-secondary-glow) 34%, transparent 73%), radial-gradient(ellipse 75% 45% at 50% 72%, rgba(74, 94, 92, 0.23), transparent 78%), linear-gradient(180deg, #161b1c 0%, #192020 48%, #121a1a 70%, #080d0e 100%);
-  transition:
-    background-color 260ms ease,
-    background-image 260ms ease;
+  transition: background-color 260ms ease, background-image 260ms ease;
 }
 
 .scene-haze {
@@ -61,10 +59,7 @@ html.is-booting .ambient-scene {
   aspect-ratio: 1;
   border: 3px solid rgba(255, 236, 179, 0.94);
   border-radius: 50%;
-  box-shadow:
-    0 0 9px 2px rgba(255, 213, 124, 0.85),
-    0 0 34px 11px var(--scene-glow),
-    0 0 80px 20px rgba(237, 24, 53, 0.26);
+  box-shadow: 0 0 9px 2px rgba(255, 213, 124, 0.85), 0 0 34px 11px var(--scene-glow), 0 0 80px 20px rgba(237, 24, 53, 0.26);
   transform: translate(-50%, -50%);
   opacity: 0.9;
 }
@@ -135,22 +130,15 @@ html.is-booting .ambient-scene {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(20, 24, 25, 0.38);
-  box-shadow:
-    0 8px 28px rgba(0, 0, 0, 0.11),
-    inset 0 1px rgba(255, 255, 255, 0.035);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.11), inset 0 1px rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(18px);
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .search-bar:focus-within {
   border-color: color-mix(in srgb, var(--line) 65%, var(--accent));
   background: rgba(17, 22, 23, 0.58);
-  box-shadow:
-    0 0 0 4px var(--accent-soft),
-    0 12px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 12px 32px rgba(0, 0, 0, 0.16);
 }
 
 .search-bar[hidden] {
@@ -211,9 +199,7 @@ html.is-booting .ambient-scene {
   font-size: 12px;
   opacity: 0;
   transform: translateX(-3px);
-  transition:
-    opacity 160ms ease,
-    transform 160ms ease;
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
 .search-bar:focus-within .search-hint {
@@ -376,10 +362,7 @@ html.is-booting .ambient-scene {
   color: var(--page-text);
   cursor: pointer;
   backdrop-filter: blur(14px);
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .floating-button:hover {
@@ -390,16 +373,14 @@ html.is-booting .ambient-scene {
 
 .floating-button--wallpaper[aria-expanded="true"] {
   border-color: #fff;
-  background: #ed1835;
+  background: var(--accent);
   color: #fff;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.65),
-    0 8px 20px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.65), 0 8px 20px rgba(0, 0, 0, 0.32);
 }
 
 .floating-button--wallpaper[aria-expanded="true"]:hover {
   border-color: #fff;
-  background: #ed1835;
+  background: var(--accent);
   transform: scale(1.04);
 }
 
@@ -450,12 +431,7 @@ html.is-booting .ambient-scene {
   pointer-events: none;
   visibility: hidden;
   transform: translateY(9px);
-  transition:
-    opacity 150ms ease,
-    visibility 150ms ease,
-    transform 150ms ease,
-    color 150ms ease,
-    background-color 150ms ease;
+  transition: opacity 150ms ease, visibility 150ms ease, transform 150ms ease, color 150ms ease, background-color 150ms ease;
 }
 
 .floating-action-item:hover,
@@ -490,8 +466,8 @@ html.is-booting .ambient-scene {
 }
 
 .floating-button--menu svg {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -507,12 +483,10 @@ html.is-booting .ambient-scene {
 
 .floating-button--menu[aria-expanded="true"] {
   border-color: #fff;
-  background: #ed1835;
+  background: var(--accent);
   color: #fff;
-  box-shadow:
-    0 0 0 2px rgba(237, 24, 53, 0.25),
-    0 8px 22px rgba(0, 0, 0, 0.35);
-  transform: scale(1.04);
+  box-shadow: 0 0 0 2px rgba(237, 24, 53, 0.25), 0 8px 22px rgba(0, 0, 0, 0.35);
+  transform: scale(1.04) rotate(90deg);
 }
 
 .floating-button--menu:focus-visible,
